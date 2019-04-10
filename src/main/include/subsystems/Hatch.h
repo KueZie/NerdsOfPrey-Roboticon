@@ -9,12 +9,12 @@
 
 #include <frc/commands/Subsystem.h>
 
-class ExampleSubsystem : public frc::Subsystem {
- public:
-  ExampleSubsystem();
-  void InitDefaultCommand() override;
-
+class Hatch : public frc::Subsystem {
  private:
   // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities
+
+ public:
+  Hatch();
+  void InitDefaultCommand() override;
 };
