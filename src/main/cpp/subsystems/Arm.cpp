@@ -7,7 +7,7 @@
 
 #include "subsystems/Arm.h"
 
-Arm::Arm() : Subsystem("ExampleSubsystem") {}
+Arm::Arm() : Subsystem("Arm") {}
 
 void Arm::InitDefaultCommand() {
   // Set the default command for a subsystem here.

@@ -8,13 +8,16 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
+#include <ctre/Phoenix.h>
 
 class Cargo : public frc::Subsystem {
- private:
-  // It's desirable that everything possible under private except
-  // for methods that implement subsystem capabilities
+private:
+  std::unique_ptr<VictorSPX> m_Intake;
 
- public:
+public:
   Cargo();
+  void In();
+  void Out();
+  void Off();
   void InitDefaultCommand() override;
 };

@@ -9,13 +9,12 @@
 
 #include <frc/commands/Subsystem.h>
 
-class Arm : public frc::Subsystem {
- private:
+class HatchSlider : public frc::Subsystem {
+private:
   // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities
 
- public:
-  Arm();
-  void SetAngle(float angle);
+public:
+  HatchSlider();
   void InitDefaultCommand() override;
 };

@@ -12,14 +12,20 @@
 #include <frc/smartdashboard/SendableChooser.h>
 
 #include "OI.h"
-#include "commands/ExampleCommand.h"
-#include "commands/MyAutoCommand.h"
-#include "subsystems/ExampleSubsystem.h"
+#include "subsystems/Arm.h"
+#include "subsystems/Cargo.h"
+#include "subsystems/Drivetrain.h"
+#include "subsystems/Hatch.h"
+#include "subsystems/HatchSlider.h"
 
 class Robot : public frc::TimedRobot {
- public:
-  static ExampleSubsystem m_subsystem;
-  static OI m_oi;
+public:
+  static Arm         m_ArmSystem;
+  static Cargo       m_CargoSystem;
+  static Hatch       m_HatchSystem;
+  static Drivetrain  m_DrivetrainSystem;
+  static HatchSlider m_HatchSliderSystem;
+  static OI          m_OI;
 
   void RobotInit() override;
   void RobotPeriodic() override;
@@ -31,11 +37,9 @@ class Robot : public frc::TimedRobot {
   void TeleopPeriodic() override;
   void TestPeriodic() override;
 
- private:
+private:
   // Have it null by default so that if testing teleop it
   // doesn't have undefined behavior and potentially crash.
   frc::Command* m_autonomousCommand = nullptr;
-  ExampleCommand m_defaultAuto;
-  MyAutoCommand m_myAuto;
   frc::SendableChooser<frc::Command*> m_chooser;
 };

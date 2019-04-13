@@ -7,12 +7,28 @@
 
 #include "subsystems/Cargo.h"
 
-Cargo::Cargo() : Subsystem("ExampleSubsystem") {}
+Cargo::Cargo() : Subsystem("Cargo")
+{
+  m_Intake.reset( new VicotrSPX(constants::cargo_intake::MOTOR_ID) );
+  m_Intake->SetInverted(InvertType::None);
+}
 
 void Cargo::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
 }
 
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
+void In()
+{
+  m_Intake->Set(ControlMode::PercentOutput, -constants::cargo_intake::MAX_OUTPUT);
+}
+
+void Out()
+{
+  m_Intake->Set(ControlMode::PercentOutput, constants::cargo_intake::MAX_OUTPUT);
+}
+
+void Off()
+{
+  m_Intake->Set(ControlMode::PercentOutput, 0.0f);
+}

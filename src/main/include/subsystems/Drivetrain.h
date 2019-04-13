@@ -8,13 +8,22 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
+#include "ctre/Phoenix.h"
+#include <memory>
+#include "Constants.h"
 
 class Drivetrain : public frc::Subsystem {
- private:
-  // It's desirable that everything possible under private except
-  // for methods that implement subsystem capabilities
+private:
+  // Master controllers
+  std::unique_ptr<TalonSRX>  m_FrontLeftMotorMaster;
+  std::unique_ptr<TalonSRX>  m_FrontRightMotorMaster;
+  // Slave controllers
+  std::unique_ptr<VictorSPX> m_MiddleLeftMotorSlave;
+  std::unique_ptr<VictorSPX> m_MiddleRightMotorSlave;
 
- public:
+  std::unique_ptr<VictorSPX> m_BackLeftMotorSlave;
+  std::unique_ptr<VictorSPX> m_BackRightMotorSlave;
+public:
   Drivetrain();
   void InitDefaultCommand() override;
 };
