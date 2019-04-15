@@ -8,7 +8,8 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
-#include "ctre/Phoenix.h"
+#include <ctre/Phoenix.h>
+#include <AHRS.h>
 #include <memory>
 #include "Constants.h"
 
@@ -23,6 +24,9 @@ private:
 
   std::unique_ptr<VictorSPX> m_BackLeftMotorSlave;
   std::unique_ptr<VictorSPX> m_BackRightMotorSlave;
+
+  // Gyro
+  std::unique_ptr<AHRS> m_AHRS;
 public:
   Drivetrain();
   void InitDefaultCommand() override;

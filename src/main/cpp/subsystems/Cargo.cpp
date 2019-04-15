@@ -9,7 +9,7 @@
 
 Cargo::Cargo() : Subsystem("Cargo")
 {
-  m_Intake.reset( new VicotrSPX(constants::cargo_intake::MOTOR_ID) );
+  m_Intake.reset( new VictorSPX(constants::cargo_intake::MOTOR_ID) );
   m_Intake->SetInverted(InvertType::None);
 }
 
@@ -18,17 +18,17 @@ void Cargo::InitDefaultCommand() {
   // SetDefaultCommand(new MySpecialCommand());
 }
 
-void In()
+void Cargo::In()
 {
   m_Intake->Set(ControlMode::PercentOutput, -constants::cargo_intake::MAX_OUTPUT);
 }
 
-void Out()
+void Cargo::Out()
 {
   m_Intake->Set(ControlMode::PercentOutput, constants::cargo_intake::MAX_OUTPUT);
 }
 
-void Off()
+void Cargo::Off()
 {
   m_Intake->Set(ControlMode::PercentOutput, 0.0f);
 }
