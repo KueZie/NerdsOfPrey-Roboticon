@@ -16,5 +16,6 @@ class Arm : public frc::Subsystem {
 
  public:
   Arm();
+  void SetAngle(float angle);
   void InitDefaultCommand() override;
 };

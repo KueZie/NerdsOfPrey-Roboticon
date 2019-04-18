@@ -5,31 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "subsystems/Hatch.h"
+#include "subsystems/HatchSlider.h"
 
-Hatch::Hatch() : Subsystem("Hatch")
-{
-  m_DSolenoid.reset( new frc::DoubleSolenoid(constants::hatch_intake::SOLENOID_IDS[0], constants::hatch_intake::SOLENOID_IDS[1]) );
-  // Start retracted
-  m_DSolenoid->Set(frc::DoubleSolenoid::Value::kReverse);
-}
+HatchSlider::HatchSlider() : Subsystem("ExampleSubsystem") {}
 
-void Hatch::InitDefaultCommand() {
+void HatchSlider::InitDefaultCommand() {
   // Set the default command for a subsystem here.
   // SetDefaultCommand(new MySpecialCommand());
 }
 
-void Hatch::Grab()
-{
-  m_DSolenoid->Set(frc::DoubleSolenoid::Value::kForward);
-}
-
-void Hatch::Release()
-{
-  m_DSolenoid->Set(frc::DoubleSolenoid::Value::kReverse);
-}
-
-void Hatch::Off()
-{
-  m_DSolenoid->Set(frc::DoubleSolenoid::Value::kOff);
-}
+// Put methods for controlling this subsystem
+// here. Call these from Commands.

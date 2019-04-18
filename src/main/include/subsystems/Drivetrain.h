@@ -8,6 +8,7 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
+<<<<<<< HEAD
 #include "ctre/Pheonix.h"
 #include <AHRS.h>
 #include <memory>
@@ -25,8 +26,28 @@ private:
   std::unique_ptr<TalonSRX> m_MiddleRightMotor(new TalonSRX(right_drivetrain::MIDDLE_MOTOR_ID));
   std::unique_ptr<TalonSRX> m_BackRightMotor  (new TalonSRX(right_drivetrain::BACK_MOTOR_ID));
   std::unique_ptr<AHRS>
+=======
+#include <ctre/Phoenix.h>
+#include <AHRS.h>
+#include <memory>
+#include "Constants.h"
 
- public:
+class Drivetrain : public frc::Subsystem {
+private:
+  // Master controllers
+  std::unique_ptr<TalonSRX>  m_FrontLeftMotorMaster;
+  std::unique_ptr<TalonSRX>  m_FrontRightMotorMaster;
+  // Slave controllers
+  std::unique_ptr<VictorSPX> m_MiddleLeftMotorSlave;
+  std::unique_ptr<VictorSPX> m_MiddleRightMotorSlave;
+>>>>>>> be9dec72d3db26ead6eacbc815e4bc7a9fa714de
+
+  std::unique_ptr<VictorSPX> m_BackLeftMotorSlave;
+  std::unique_ptr<VictorSPX> m_BackRightMotorSlave;
+
+  // Gyro
+  std::unique_ptr<AHRS> m_AHRS;
+public:
   Drivetrain();
   void InitDefaultCommand() override;
 };

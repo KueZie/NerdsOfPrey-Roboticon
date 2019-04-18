@@ -8,17 +8,13 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
-#include <ctre/Phoenix.h>
-#include "Constants.h"
 
-class Cargo : public frc::Subsystem {
+class HatchSlider : public frc::Subsystem {
 private:
-  std::unique_ptr<VictorSPX> m_Intake;
+  // It's desirable that everything possible under private except
+  // for methods that implement subsystem capabilities
 
 public:
-  Cargo();
-  void In();
-  void Out();
-  void Off();
+  HatchSlider();
   void InitDefaultCommand() override;
 };

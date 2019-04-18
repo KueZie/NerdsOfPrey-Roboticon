@@ -8,13 +8,18 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
+#include <frc/WPILib.h>
+#include <memory>
+#include "Constants.h"
 
 class Hatch : public frc::Subsystem {
- private:
-  // It's desirable that everything possible under private except
-  // for methods that implement subsystem capabilities
+private:
+  std::unique_ptr<frc::DoubleSolenoid> m_DSolenoid;
 
- public:
+public:
   Hatch();
+  void Grab();
+  void Release();
+  void Off();
   void InitDefaultCommand() override;
 };
