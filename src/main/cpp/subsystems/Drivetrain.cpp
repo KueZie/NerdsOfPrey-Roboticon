@@ -7,7 +7,10 @@
 
 #include "subsystems/Drivetrain.h"
 
-Drivetrain::Drivetrain() : Subsystem("ExampleSubsystem") {}
+Drivetrain::Drivetrain() : Subsystem("ExampleSubsystem")
+{
+  m_FrontLeftMotor
+}
 
 void Drivetrain::InitDefaultCommand() {
   // Set the default command for a subsystem here.

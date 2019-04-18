@@ -8,11 +8,23 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
+#include "ctre/Pheonix.h"
+#include <AHRS.h>
+#include <memory>
 
 class Drivetrain : public frc::Subsystem {
- private:
+  using left_drivetrain  = nop::constants::left_drivetrain;
+  using right_drivetrain = nop::constants::right_drivetrain;
+private:
   // It's desirable that everything possible under private except
   // for methods that implement subsystem capabilities
+  std::unique_ptr<TalonSRX> m_FrontLeftMotor  (new TalonSRX(left_drivetrain::FRONT_MOTOR_ID));
+  std::unique_ptr<TalonSRX> m_MiddleLeftMotor (new TalonSRX(left_drivetrain::MIDDLE_MOTOR_ID));
+  std::unique_ptr<TalonSRX> m_BackLeftMotor   (new TalonSRX(left_drivetrain::BACK_MOTOR_ID));
+  std::unique_ptr<TalonSRX> m_FrontRightMotor (new TalonSRX(right_drivetrain::FRONT_MOTOR_ID));
+  std::unique_ptr<TalonSRX> m_MiddleRightMotor(new TalonSRX(right_drivetrain::MIDDLE_MOTOR_ID));
+  std::unique_ptr<TalonSRX> m_BackRightMotor  (new TalonSRX(right_drivetrain::BACK_MOTOR_ID));
+  std::unique_ptr<AHRS>
 
  public:
   Drivetrain();
