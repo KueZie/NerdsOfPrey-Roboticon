@@ -5,16 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "commands/ExtendHatchSlider.h"
 
-#include <frc/commands/Command.h>
+ExtendHatchSlider::ExtendHatchSlider() {
+  Requires(HatchSlider::GetInstance());
+}
 
-class FollowTrajectory : public frc::Command {
-public:
-  FollowTrajectory();
-  void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void End() override;
-  void Interrupted() override;
-};
+// Called once when the command executes
+void ExtendHatchSlider::Initialize()
+{
+  HatchSlider::GetInstance()->Out();
+}

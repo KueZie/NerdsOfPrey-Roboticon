@@ -7,14 +7,12 @@
 
 #pragma once
 
-#include <frc/commands/Command.h>
+#include <frc/commands/Subsystem.h>
 
-class FollowTrajectory : public frc::Command {
+class Climber : public frc::Subsystem {
+private:
+  static Climber* m_Instance;
+  Climber();
 public:
-  FollowTrajectory();
-  void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void End() override;
-  void Interrupted() override;
+  static Climber* GetInstance();
 };

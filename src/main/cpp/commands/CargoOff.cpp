@@ -5,16 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "commands/CargoOff.h"
 
-#include <frc/commands/Command.h>
+CargoOff::CargoOff() {
+  Requires(Cargo::GetInstance());
+}
 
-class FollowTrajectory : public frc::Command {
-public:
-  FollowTrajectory();
-  void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void End() override;
-  void Interrupted() override;
-};
+void CargoOff::Initialize()
+{
+  Cargo::GetInstance()->Off();
+}

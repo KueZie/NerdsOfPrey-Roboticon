@@ -7,6 +7,8 @@
 
 #include "subsystems/Cargo.h"
 
+Cargo* Cargo::m_Instance = nullptr;
+
 Cargo::Cargo() : Subsystem("Cargo")
 {
   m_Intake.reset( new VictorSPX(constants::cargo_intake::MOTOR_ID) );
@@ -33,4 +35,9 @@ void Cargo::Out()
 void Cargo::Off()
 {
   m_Intake->Set(ControlMode::PercentOutput, 0.0f);
+}
+
+void Cargo::InitDefaultCommand()
+{
+  SetDefaultCommand(new CargoOff());
 }

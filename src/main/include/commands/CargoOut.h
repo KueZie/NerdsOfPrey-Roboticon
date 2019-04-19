@@ -7,14 +7,11 @@
 
 #pragma once
 
-#include <frc/commands/Command.h>
+#include <frc/commands/InstantCommand.h>
+#include "subsystems/Cargo.h"
 
-class FollowTrajectory : public frc::Command {
-public:
-  FollowTrajectory();
+class CargoOut : public frc::InstantCommand {
+ public:
+  CargoOut();
   void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void End() override;
-  void Interrupted() override;
 };

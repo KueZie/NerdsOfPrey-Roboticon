@@ -11,7 +11,7 @@
 #include "subsystems/Arm.h"
 
 class ArmCargoShipPosition : public frc::Command {
- public:
+public:
   ArmCargoShipPosition();
   void Initialize() override;
   void Execute() override;

@@ -10,7 +10,7 @@
 #include <frc/commands/Command.h>
 
 class ArmRocketPosition : public frc::Command {
- public:
+public:
   ArmRocketPosition();
   void Initialize() override;
   void Execute() override;

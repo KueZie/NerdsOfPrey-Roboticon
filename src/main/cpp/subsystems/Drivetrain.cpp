@@ -7,6 +7,8 @@
 
 #include "subsystems/Drivetrain.h"
 
+Drivetrain* Drivetrain::m_Instance = nullptr;
+
 Drivetrain::Drivetrain() : Subsystem("Drivetrain")
 {
   // Setup controllers
@@ -19,12 +21,21 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain")
   m_BackLeftMotorSlave.reset(    new VictorSPX(constants::drivetrain::left::BACK_MOTOR_ID ) );
   m_BackRightMotorSlave.reset(   new VictorSPX(constants::drivetrain::right::BACK_MOTOR_ID) );
 
+  m_AHRS.reset( new AHRS(SPI::Port::kMXP) );
+
   m_FrontLeftMotorMaster-> ConfigFactoryDefault();
   m_FrontRightMotorMaster->ConfigFactoryDefault();
   m_MiddleLeftMotorSlave-> ConfigFactoryDefault();
   m_MiddleRightMotorSlave->ConfigFactoryDefault();
   m_BackLeftMotorSlave->   ConfigFactoryDefault();
   m_BackRightMotorSlave->  ConfigFactoryDefault();
+
+  m_FrontLeftMotorMaster-> ClearStickyFaults(constants::TIMEOUT_MS);
+  m_FrontRightMotorMaster->ClearStickyFaults(constants::TIMEOUT_MS);
+  m_MiddleLeftMotorSlave-> ClearStickyFaults(constants::TIMEOUT_MS);
+  m_MiddleRightMotorSlave->ClearStickyFaults(constants::TIMEOUT_MS);
+  m_BackLeftMotorSlave->   ClearStickyFaults(constants::TIMEOUT_MS);
+  m_BackRightMotorSlave->  ClearStickyFaults(constants::TIMEOUT_MS);
 
   // Config master-slave
   m_MiddleLeftMotorSlave-> Follow(*m_FrontLeftMotorMaster);
@@ -34,8 +45,8 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain")
   m_BackRightMotorSlave->Follow(*m_FrontRightMotorMaster);
 
   // Setup encoders
-  m_FrontLeftMotorMaster-> ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative);
-  m_FrontRightMotorMaster->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative);
+  m_FrontLeftMotorMaster-> ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, constants::TIMEOUT_MS);
+  m_FrontRightMotorMaster->ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, constants::TIMEOUT_MS);
   m_FrontLeftMotorMaster-> SetSensorPhase(false);
   m_FrontRightMotorMaster->SetSensorPhase(false);
 
@@ -76,14 +87,37 @@ Drivetrain* Drivetrain::GetInstance()
 
 void Drivetrain::ArcadeDrive(float throttle, float rotationSpeed)
 {
-  float left = throttle + rotationSpeed;
-  float right = throttle - rotationSpeed;
+  float normalizedRotationSpeed = functions::clamp(rotationSpeed, -constants::drivetrain::MAX_TURN_SPEED, constants::drivetrain::MAX_TURN_SPEED);
+  float normalizedThrottle = functions::clamp(throttle, -constants::drivetrain::MAX_THROTTLE, constants::drivetrain::MAX_THROTTLE);
+  float left  = functions::normalize(throttle + rotationSpeed);
+  float right = functions::normalize(throttle - rotationSpeed);
   TankDrive(left, right);
 }
 
 void Drivetrain::TankDrive(float left, float right)
 {
-
   m_FrontLeftMotorMaster->Set(ControlMode::PercentOutput, functions::normalize(left));
   m_FrontRightMotorMaster->Set(ControlMode::PercentOutput, functions::normalize(right));
+}
+
+void Drivetrain::ResetEncoderPositions()
+{
+  m_FrontLeftMotorMaster-> SetSelectedSensorPosition(0, 0);
+  m_FrontRightMotorMaster->SetSelectedSensorPosition(0, 0);
+}
+
+void Drivetrain::ResetGyro()
+{
+  m_AHRS->ZeroYaw();
+}
+
+void Drivetrain::ResetSensors()
+{
+  ResetEncoderPositions();
+  ResetGyro();
+}
+
+float Drivetrain::GetYaw()
+{
+  return m_AHRS->GetYaw();
 }

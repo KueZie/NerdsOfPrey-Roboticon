@@ -5,16 +5,13 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "commands/GrabHatch.h"
 
-#include <frc/commands/Command.h>
+GrabHatch::GrabHatch() {
+  Requires(Hatch::GetInstance());
+}
 
-class FollowTrajectory : public frc::Command {
-public:
-  FollowTrajectory();
-  void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void End() override;
-  void Interrupted() override;
-};
+void GrabHatch::Initialize()
+{
+  Hatch::GetInstance()->Grab();
+}

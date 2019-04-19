@@ -5,16 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "subsystems/Climber.h"
 
-#include <frc/commands/Command.h>
+Climber* Climber::m_Instance = nullptr;
 
-class FollowTrajectory : public frc::Command {
-public:
-  FollowTrajectory();
-  void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void End() override;
-  void Interrupted() override;
-};
+Climber::Climber() : Subsystem("ExampleSubsystem")
+{}
+
+Climber* Climber::GetInstance()
+{
+  if (m_Instance == nullptr)
+    m_Instance = new Climber();
+  return m_Instance;
+}

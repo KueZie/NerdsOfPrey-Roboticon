@@ -10,7 +10,7 @@
 #include <frc/commands/Command.h>
 
 class ArmDefaultPosition : public frc::Command {
- public:
+public:
   ArmDefaultPosition();
   void Initialize() override;
   void Execute() override;

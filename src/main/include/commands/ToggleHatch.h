@@ -7,14 +7,11 @@
 
 #pragma once
 
-#include <frc/commands/Command.h>
+#include <frc/commands/InstantCommand.h>
+#include "subsystems/Hatch.h"
 
-class FollowTrajectory : public frc::Command {
+class ToggleHatch : public frc::InstantCommand {
 public:
-  FollowTrajectory();
+  ToggleHatch();
   void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void End() override;
-  void Interrupted() override;
 };

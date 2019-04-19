@@ -15,13 +15,15 @@
 class Hatch : public frc::Subsystem {
 private:
   std::unique_ptr<frc::DoubleSolenoid> m_DSolenoid;
+  bool m_IsGrabbing = true;
 
-  Hatch* m_Instance;
+  static Hatch* m_Instance;
   Hatch();
 public:
-  Hatch* GetInstance();
+  static Hatch* GetInstance();
   ~Hatch() { delete m_Instance; }
   void Grab();
   void Release();
+  void Toggle();
   void Off();
 };

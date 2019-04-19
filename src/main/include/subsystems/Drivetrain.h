@@ -29,12 +29,16 @@ private:
   // Gyro
   std::unique_ptr<AHRS> m_AHRS;
 
-  Drivetrain* m_Instance;
+  static Drivetrain* m_Instance;
 
   Drivetrain(); // Prevent instantiation outside of this class
 public:
-  Drivetrain* GetInstance();
+  static Drivetrain* GetInstance();
   void ArcadeDrive(float throttle, float rotationSpeed);
   void TankDrive(float left, float right);
+  void ResetEncoderPositions();
+  void ResetGyro();
+  void ResetSensors();
+  float GetYaw();
   ~Drivetrain() { delete m_Instance; }
 };

@@ -2,7 +2,7 @@
 
 namespace constants
 {
-    constexpr int TIMEOUT_MS = 1;
+    constexpr int TIMEOUT_MS = 10;
     namespace controls
     {
         constexpr int CONTROLLER_ID = 0;
@@ -11,10 +11,13 @@ namespace constants
         constexpr int ROTATION_AXIS_ID = 1;
         constexpr int HATCH_SLIDER_BTN_ID = 0;
         constexpr int HATCH_BTN_ID = 0;
-        constexpr int CARGO_BTN_IDS[] = {0, 0};
+        constexpr int CARGO_IN_BTN_ID = 0;
+        constexpr int CARGO_OUT_BTN_ID = 0;
     }
     namespace drivetrain
     {
+        constexpr float MAX_THROTTLE = 0.5f;
+        constexpr float MAX_TURN_SPEED = 0.25f;
         namespace left
         {
             constexpr int FRONT_MOTOR_ID  = 0;

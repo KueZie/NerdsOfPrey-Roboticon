@@ -5,16 +5,14 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "commands/CargoOut.h"
 
-#include <frc/commands/Command.h>
+CargoOut::CargoOut() {
+  Requires(Cargo::GetInstance());
+}
 
-class FollowTrajectory : public frc::Command {
-public:
-  FollowTrajectory();
-  void Initialize() override;
-  void Execute() override;
-  bool IsFinished() override;
-  void End() override;
-  void Interrupted() override;
-};
+// Called once when the command executes
+void CargoOut::Initialize() 
+{
+  Cargo::GetInstance()->Out();
+}

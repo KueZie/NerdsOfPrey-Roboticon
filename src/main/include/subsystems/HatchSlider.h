@@ -15,13 +15,15 @@
 class HatchSlider : public frc::Subsystem {
 private:
   std::unique_ptr<frc::DoubleSolenoid> m_DSolenoid;
+  bool m_IsOut = false;
 
-  HatchSlider* m_Instance;
+  static HatchSlider* m_Instance;
   HatchSlider();
 public:
-  HatchSlider* GetInstance();
+  static HatchSlider* GetInstance();
   ~HatchSlider() { delete m_Instance; }
   void Out();
   void In();
+  void Toggle();
   void Off();
 };
