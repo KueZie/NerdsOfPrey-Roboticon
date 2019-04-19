@@ -12,12 +12,6 @@
 #include <frc/smartdashboard/SendableChooser.h>
 
 #include "OI.h"
-<<<<<<< HEAD
-
-class Robot : public frc::TimedRobot {
- public:
-  static OI m_oi;
-=======
 #include "subsystems/Arm.h"
 #include "subsystems/Cargo.h"
 #include "subsystems/Drivetrain.h"
@@ -26,13 +20,12 @@ class Robot : public frc::TimedRobot {
 
 class Robot : public frc::TimedRobot {
 public:
-  static Arm         m_ArmSystem;
-  static Cargo       m_CargoSystem;
-  static Hatch       m_HatchSystem;
-  static Drivetrain  m_DrivetrainSystem;
-  static HatchSlider m_HatchSliderSystem;
-  static OI          m_OI;
->>>>>>> be9dec72d3db26ead6eacbc815e4bc7a9fa714de
+  //Arm* m_ArmSystem;
+  /*static Cargo       m_CargoSystem     = Cargo::GetInstance();
+  static Hatch       m_HatchSystem       = Hatch::GetInstance();
+  static Drivetrain  m_DrivetrainSystem  = Drivetrain::GetInstance();
+  static HatchSlider m_HatchSliderSystem = HatchSlider::GetInstance();
+  static OI          m_OI                = OI::GetInstance();*/
 
   void RobotInit() override;
   void RobotPeriodic() override;

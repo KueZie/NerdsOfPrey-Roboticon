@@ -7,21 +7,14 @@
 
 #pragma once
 
-#include <frc/commands/Subsystem.h>
-#include <frc/WPILib.h>
-#include <memory>
-#include "Constants.h"
+#include <frc/commands/Command.h>
 
-class HatchSlider : public frc::Subsystem {
-private:
-  std::unique_ptr<frc::DoubleSolenoid> m_DSolenoid;
-
-  HatchSlider* m_Instance;
-  HatchSlider();
-public:
-  HatchSlider* GetInstance();
-  ~HatchSlider() { delete m_Instance; }
-  void Out();
-  void In();
-  void Off();
+class ArmDefaultPosition : public frc::Command {
+ public:
+  ArmDefaultPosition();
+  void Initialize() override;
+  void Execute() override;
+  bool IsFinished() override;
+  void End() override;
+  void Interrupted() override;
 };

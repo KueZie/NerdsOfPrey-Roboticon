@@ -8,29 +8,11 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
-<<<<<<< HEAD
-#include "ctre/Pheonix.h"
-#include <AHRS.h>
-#include <memory>
-
-class Drivetrain : public frc::Subsystem {
-  using left_drivetrain  = nop::constants::left_drivetrain;
-  using right_drivetrain = nop::constants::right_drivetrain;
-private:
-  // It's desirable that everything possible under private except
-  // for methods that implement subsystem capabilities
-  std::unique_ptr<TalonSRX> m_FrontLeftMotor  (new TalonSRX(left_drivetrain::FRONT_MOTOR_ID));
-  std::unique_ptr<TalonSRX> m_MiddleLeftMotor (new TalonSRX(left_drivetrain::MIDDLE_MOTOR_ID));
-  std::unique_ptr<TalonSRX> m_BackLeftMotor   (new TalonSRX(left_drivetrain::BACK_MOTOR_ID));
-  std::unique_ptr<TalonSRX> m_FrontRightMotor (new TalonSRX(right_drivetrain::FRONT_MOTOR_ID));
-  std::unique_ptr<TalonSRX> m_MiddleRightMotor(new TalonSRX(right_drivetrain::MIDDLE_MOTOR_ID));
-  std::unique_ptr<TalonSRX> m_BackRightMotor  (new TalonSRX(right_drivetrain::BACK_MOTOR_ID));
-  std::unique_ptr<AHRS>
-=======
 #include <ctre/Phoenix.h>
 #include <AHRS.h>
 #include <memory>
 #include "Constants.h"
+#include "util/Functions.h"
 
 class Drivetrain : public frc::Subsystem {
 private:
@@ -40,14 +22,19 @@ private:
   // Slave controllers
   std::unique_ptr<VictorSPX> m_MiddleLeftMotorSlave;
   std::unique_ptr<VictorSPX> m_MiddleRightMotorSlave;
->>>>>>> be9dec72d3db26ead6eacbc815e4bc7a9fa714de
 
   std::unique_ptr<VictorSPX> m_BackLeftMotorSlave;
   std::unique_ptr<VictorSPX> m_BackRightMotorSlave;
 
   // Gyro
   std::unique_ptr<AHRS> m_AHRS;
+
+  Drivetrain* m_Instance;
+
+  Drivetrain(); // Prevent instantiation outside of this class
 public:
-  Drivetrain();
-  void InitDefaultCommand() override;
+  Drivetrain* GetInstance();
+  void ArcadeDrive(float throttle, float rotationSpeed);
+  void TankDrive(float left, float right);
+  ~Drivetrain() { delete m_Instance; }
 };

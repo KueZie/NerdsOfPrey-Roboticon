@@ -10,13 +10,6 @@
 #include <frc/commands/Scheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
-Arm         m_ArmSystem;
-Cargo       m_CargoSystem;
-Hatch       m_HatchSystem;
-Drivetrain  m_DrivetrainSystem;
-HatchSlider m_HatchSliderSystem;
-OI          m_OI;
-
 void Robot::RobotInit() {
   frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
 }

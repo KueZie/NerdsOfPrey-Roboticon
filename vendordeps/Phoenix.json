@@ -1,11 +1,7 @@
 {
     "fileName": "Phoenix.json",
     "name": "CTRE-Phoenix",
-<<<<<<< HEAD
-    "version": "5.12.0",
-=======
     "version": "5.14.1",
->>>>>>> be9dec72d3db26ead6eacbc815e4bc7a9fa714de
     "uuid": "ab676553-b602-441f-a38d-f1296eff6537",
     "mavenUrls": [
         "http://devsite.ctr-electronics.com/maven/release/"
@@ -15,31 +11,19 @@
         {
             "groupId": "com.ctre.phoenix",
             "artifactId": "api-java",
-<<<<<<< HEAD
-            "version": "5.12.0"
-=======
             "version": "5.14.1"
->>>>>>> be9dec72d3db26ead6eacbc815e4bc7a9fa714de
         },
         {
             "groupId": "com.ctre.phoenix",
             "artifactId": "wpiapi-java",
-<<<<<<< HEAD
-            "version": "5.12.0"
-=======
             "version": "5.14.1"
->>>>>>> be9dec72d3db26ead6eacbc815e4bc7a9fa714de
         }
     ],
     "jniDependencies": [
         {
             "groupId": "com.ctre.phoenix",
             "artifactId": "cci",
-<<<<<<< HEAD
-            "version": "5.12.0",
-=======
             "version": "5.14.1",
->>>>>>> be9dec72d3db26ead6eacbc815e4bc7a9fa714de
             "isJar": false,
             "skipInvalidPlatforms": true,
             "validPlatforms": [
@@ -47,8 +31,6 @@
                 "windowsx86-64",
                 "linuxx86-64"
             ]
-<<<<<<< HEAD
-=======
         },
         {
             "groupId": "com.ctre.phoenix",
@@ -71,18 +53,13 @@
                 "windowsx86-64",
                 "linuxx86-64"
             ]
->>>>>>> be9dec72d3db26ead6eacbc815e4bc7a9fa714de
         }
     ],
     "cppDependencies": [
         {
             "groupId": "com.ctre.phoenix",
             "artifactId": "wpiapi-cpp",
-<<<<<<< HEAD
-            "version": "5.12.0",
-=======
             "version": "5.14.1",
->>>>>>> be9dec72d3db26ead6eacbc815e4bc7a9fa714de
             "libName": "CTRE_Phoenix_WPI",
             "headerClassifier": "headers",
             "sharedLibrary": false,
@@ -96,11 +73,7 @@
         {
             "groupId": "com.ctre.phoenix",
             "artifactId": "api-cpp",
-<<<<<<< HEAD
-            "version": "5.12.0",
-=======
             "version": "5.14.1",
->>>>>>> be9dec72d3db26ead6eacbc815e4bc7a9fa714de
             "libName": "CTRE_Phoenix",
             "headerClassifier": "headers",
             "sharedLibrary": false,
@@ -114,11 +87,7 @@
         {
             "groupId": "com.ctre.phoenix",
             "artifactId": "cci",
-<<<<<<< HEAD
-            "version": "5.12.0",
-=======
             "version": "5.14.1",
->>>>>>> be9dec72d3db26ead6eacbc815e4bc7a9fa714de
             "libName": "CTRE_PhoenixCCI",
             "headerClassifier": "headers",
             "sharedLibrary": false,
@@ -131,10 +100,6 @@
         },
         {
             "groupId": "com.ctre.phoenix",
-<<<<<<< HEAD
-            "artifactId": "core",
-            "version": "5.12.0",
-=======
             "artifactId": "canutils",
             "version": "5.14.1",
             "libName": "CTRE_PhoenixCanutils",
@@ -163,7 +128,6 @@
             "groupId": "com.ctre.phoenix",
             "artifactId": "core",
             "version": "5.14.1",
->>>>>>> be9dec72d3db26ead6eacbc815e4bc7a9fa714de
             "libName": "CTRE_PhoenixCore",
             "headerClassifier": "headers"
         }

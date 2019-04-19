@@ -7,11 +7,6 @@
 
 #include "subsystems/Drivetrain.h"
 
-<<<<<<< HEAD
-Drivetrain::Drivetrain() : Subsystem("ExampleSubsystem")
-{
-  m_FrontLeftMotor
-=======
 Drivetrain::Drivetrain() : Subsystem("Drivetrain")
 {
   // Setup controllers
@@ -32,11 +27,11 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain")
   m_BackRightMotorSlave->  ConfigFactoryDefault();
 
   // Config master-slave
-  m_MiddleLeftMotorSlave-> Follow(*m_FrontLeftMotorMaster.get());
-  m_MiddleRightMotorSlave->Follow(*m_FrontRightMotorMaster.get());
+  m_MiddleLeftMotorSlave-> Follow(*m_FrontLeftMotorMaster);
+  m_MiddleRightMotorSlave->Follow(*m_FrontRightMotorMaster);
 
-  m_BackLeftMotorSlave-> Follow(*m_FrontLeftMotorMaster.get());
-  m_BackRightMotorSlave->Follow(*m_FrontRightMotorMaster.get());
+  m_BackLeftMotorSlave-> Follow(*m_FrontLeftMotorMaster);
+  m_BackRightMotorSlave->Follow(*m_FrontRightMotorMaster);
 
   // Setup encoders
   m_FrontLeftMotorMaster-> ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative);
@@ -59,24 +54,36 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain")
   m_BackLeftMotorSlave->   SetNeutralMode(NeutralMode::Brake);
   m_BackRightMotorSlave->  SetNeutralMode(NeutralMode::Brake);
 
-  m_FrontLeftMotorMaster->ConfigNominalOutputForward(0.0f, constants::timeout);
-  m_FrontLeftMotorMaster->ConfigNominalOutputReverse(0.0f, constants::timeout);
-  m_FrontLeftMotorMaster->ConfigPeakOutputForward   (0.5f, constants::timeout);
-  m_FrontLeftMotorMaster->ConfigPeakOutputReverse   (0.5f, constants::timeout);
-  m_FrontLeftMotorMaster->ConfigOpenloopRamp(1, constants::timeout);
+  m_FrontLeftMotorMaster->ConfigNominalOutputForward(0.0f, constants::TIMEOUT_MS);
+  m_FrontLeftMotorMaster->ConfigNominalOutputReverse(0.0f, constants::TIMEOUT_MS);
+  m_FrontLeftMotorMaster->ConfigPeakOutputForward   (0.5f, constants::TIMEOUT_MS);
+  m_FrontLeftMotorMaster->ConfigPeakOutputReverse   (0.5f, constants::TIMEOUT_MS);
+  m_FrontLeftMotorMaster->ConfigOpenloopRamp(1, constants::TIMEOUT_MS);
 
-  m_FrontRightMotorMaster->ConfigNominalOutputForward(0.0f, constants::timeout);
-  m_FrontRightMotorMaster->ConfigNominalOutputReverse(0.0f, constants::timeout);
-  m_FrontRightMotorMaster->ConfigPeakOutputForward   (0.5f, constants::timeout);
-  m_FrontRightMotorMaster->ConfigPeakOutputReverse   (0.5f, constants::timeout);
-  m_FrontRightMotorMaster->ConfigOpenloopRamp(1, constants::timeout);
->>>>>>> be9dec72d3db26ead6eacbc815e4bc7a9fa714de
+  m_FrontRightMotorMaster->ConfigNominalOutputForward(0.0f, constants::TIMEOUT_MS);
+  m_FrontRightMotorMaster->ConfigNominalOutputReverse(0.0f, constants::TIMEOUT_MS);
+  m_FrontRightMotorMaster->ConfigPeakOutputForward   (0.5f, constants::TIMEOUT_MS);
+  m_FrontRightMotorMaster->ConfigPeakOutputReverse   (0.5f, constants::TIMEOUT_MS);
+  m_FrontRightMotorMaster->ConfigOpenloopRamp(1, constants::TIMEOUT_MS);
 }
 
-void Drivetrain::InitDefaultCommand() {
-  // Set the default command for a subsystem here.
-  // SetDefaultCommand(new MySpecialCommand());
+Drivetrain* Drivetrain::GetInstance()
+{
+  if (m_Instance == nullptr)
+    m_Instance = new Drivetrain();
+  return m_Instance;
 }
 
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
+void Drivetrain::ArcadeDrive(float throttle, float rotationSpeed)
+{
+  float left = throttle + rotationSpeed;
+  float right = throttle - rotationSpeed;
+  TankDrive(left, right);
+}
+
+void Drivetrain::TankDrive(float left, float right)
+{
+
+  m_FrontLeftMotorMaster->Set(ControlMode::PercentOutput, functions::normalize(left));
+  m_FrontRightMotorMaster->Set(ControlMode::PercentOutput, functions::normalize(right));
+}

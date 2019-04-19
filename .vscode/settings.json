@@ -75,6 +75,8 @@
     "xtree": "cpp",
     "xutility": "cpp",
     "*.tcc": "cpp",
-    "deque": "cpp"
+    "deque": "cpp",
+    "queue": "cpp",
+    "stack": "cpp"
   }
 }

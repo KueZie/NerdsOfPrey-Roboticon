@@ -7,12 +7,41 @@
 
 #include "subsystems/Arm.h"
 
-Arm::Arm() : Subsystem("Arm") {}
+Arm* Arm::m_Instance = nullptr;
 
-void Arm::InitDefaultCommand() {
-  // Set the default command for a subsystem here.
-  // SetDefaultCommand(new MySpecialCommand());
+Arm::Arm() : Subsystem("Arm")
+{
+  m_LeftMotorMaster.reset( new TalonSRX(constants::arm::LEFT_MOTOR_ID) );
+  m_RightMotorSlave.reset( new TalonSRX(constants::arm::RIGHT_MOTOR_ID) );
+
+  m_LeftMotorMaster->ConfigFactoryDefault();
+  m_RightMotorSlave->ConfigFactoryDefault();
+
+  m_LeftMotorMaster->ConfigSelectedFeedbackSensor(motorcontrol::CTRE_MagEncoder_Relative);
+  m_RightMotorSlave->ConfigSelectedFeedbackSensor(motorcontrol::CTRE_MagEncoder_Relative);
+
+  m_RightMotorSlave->Follow(*m_LeftMotorMaster);
+
+  m_LeftMotorMaster->SetInverted(InvertType::None);
+  m_RightMotorSlave->SetInverted(InvertType::OpposeMaster);
+
+  m_LeftMotorMaster->SetNeutralMode(NeutralMode::Brake);
+  m_RightMotorSlave->SetNeutralMode(NeutralMode::Brake);
 }
 
-// Put methods for controlling this subsystem
-// here. Call these from Commands.
+Arm* Arm::GetInstance()
+{
+  if (m_Instance == nullptr)
+    m_Instance = new Arm();
+  return m_Instance;
+}
+
+float Arm::GetLeftEncoderPosition()
+{
+  return m_LeftMotorMaster->GetSelectedSensorPosition(0);
+}
+
+float Arm::GetRightEncoderPosition()
+{
+  return m_RightMotorSlave->GetSelectedSensorPosition(0);
+}

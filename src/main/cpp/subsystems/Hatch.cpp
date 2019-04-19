@@ -14,9 +14,11 @@ Hatch::Hatch() : Subsystem("Hatch")
   m_DSolenoid->Set(frc::DoubleSolenoid::Value::kReverse);
 }
 
-void Hatch::InitDefaultCommand() {
-  // Set the default command for a subsystem here.
-  // SetDefaultCommand(new MySpecialCommand());
+Hatch* Hatch::GetInstance()
+{
+  if (m_Instance == nullptr)
+    m_Instance = new Hatch();
+  return m_Instance;
 }
 
 void Hatch::Grab()

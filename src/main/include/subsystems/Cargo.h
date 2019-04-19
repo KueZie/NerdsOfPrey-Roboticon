@@ -14,11 +14,12 @@
 class Cargo : public frc::Subsystem {
 private:
   std::unique_ptr<VictorSPX> m_Intake;
-
-public:
+  Cargo* m_Instance;
   Cargo();
+public:
+  Cargo* GetInstance();
+  ~Cargo() { delete m_Instance; }
   void In();
   void Out();
   void Off();
-  void InitDefaultCommand() override;
 };

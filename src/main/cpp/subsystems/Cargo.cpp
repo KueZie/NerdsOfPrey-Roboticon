@@ -13,9 +13,11 @@ Cargo::Cargo() : Subsystem("Cargo")
   m_Intake->SetInverted(InvertType::None);
 }
 
-void Cargo::InitDefaultCommand() {
-  // Set the default command for a subsystem here.
-  // SetDefaultCommand(new MySpecialCommand());
+Cargo* Cargo::GetInstance()
+{
+  if (m_Instance == nullptr)
+    m_Instance = new Cargo();
+  return m_Instance;
 }
 
 void Cargo::In()

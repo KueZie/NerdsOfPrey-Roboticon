@@ -8,14 +8,21 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
+#include <ctre/Phoenix.h>
+#include <memory>
+#include "Constants.h"
 
 class Arm : public frc::Subsystem {
- private:
-  // It's desirable that everything possible under private except
-  // for methods that implement subsystem capabilities
-
- public:
+private:
+  int m_Angle;
+  int m_EncoderPosition;
+  std::unique_ptr<TalonSRX> m_LeftMotorMaster;
+  std::unique_ptr<TalonSRX> m_RightMotorSlave;
+  static Arm* m_Instance;
   Arm();
-  void SetAngle(float angle);
-  void InitDefaultCommand() override;
+public:
+  static Arm* GetInstance();
+  ~Arm() { delete m_Instance; }
+  float GetLeftEncoderPosition();
+  float GetRightEncoderPosition();
 };

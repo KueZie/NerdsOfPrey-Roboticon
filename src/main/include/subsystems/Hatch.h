@@ -16,10 +16,12 @@ class Hatch : public frc::Subsystem {
 private:
   std::unique_ptr<frc::DoubleSolenoid> m_DSolenoid;
 
-public:
+  Hatch* m_Instance;
   Hatch();
+public:
+  Hatch* GetInstance();
+  ~Hatch() { delete m_Instance; }
   void Grab();
   void Release();
   void Off();
-  void InitDefaultCommand() override;
 };

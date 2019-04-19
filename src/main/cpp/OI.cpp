@@ -7,8 +7,8 @@
 
 #include "OI.h"
 
-#include <frc/WPILib.h>
-
 OI::OI() {
-  // Process operator interface input here.
+  m_Controller.reset( new frc::Joystick(constants::controls::CONTROLLER_ID) );
+  m_ButtonBox.reset( new frc::Joystick(constants::controls::BUTTON_BOX_ID) );
+
 }
