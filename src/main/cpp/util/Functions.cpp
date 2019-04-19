@@ -11,6 +11,6 @@ namespace functions
 
     float normalize(float n)
     {
-        return clamp(n, 0.0f, 1.0f);
+        return clamp(n, -1.0f, 1.0f);
     }
 }

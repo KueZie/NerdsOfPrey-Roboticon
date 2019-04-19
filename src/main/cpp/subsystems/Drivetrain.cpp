@@ -85,19 +85,28 @@ Drivetrain* Drivetrain::GetInstance()
   return m_Instance;
 }
 
-void Drivetrain::ArcadeDrive(float throttle, float rotationSpeed)
+float Drivetrain::ResolveDeadband(float power)
+{
+  bool isPositive = power == abs(power);
+  if (abs(power) < constants::drivetrain::DEADBAND)
+    return isPositive ?  constants::drivetrain::DEADBAND 
+                      : -constants::drivetrain::DEADBAND;
+  return power;
+}
+
+void Drivetrain::Arcade(float throttle, float rotationSpeed)
 {
   float normalizedRotationSpeed = functions::clamp(rotationSpeed, -constants::drivetrain::MAX_TURN_SPEED, constants::drivetrain::MAX_TURN_SPEED);
   float normalizedThrottle = functions::clamp(throttle, -constants::drivetrain::MAX_THROTTLE, constants::drivetrain::MAX_THROTTLE);
   float left  = functions::normalize(throttle + rotationSpeed);
   float right = functions::normalize(throttle - rotationSpeed);
-  TankDrive(left, right);
+  Tank(left, right);
 }
 
-void Drivetrain::TankDrive(float left, float right)
+void Drivetrain::Tank(float left, float right)
 {
-  m_FrontLeftMotorMaster->Set(ControlMode::PercentOutput, functions::normalize(left));
-  m_FrontRightMotorMaster->Set(ControlMode::PercentOutput, functions::normalize(right));
+  m_FrontLeftMotorMaster->Set(ControlMode::PercentOutput, ResolveDeadband( functions::normalize(left) ));
+  m_FrontRightMotorMaster->Set(ControlMode::PercentOutput, ResolveDeadband( functions::normalize(right) ));
 }
 
 void Drivetrain::ResetEncoderPositions()
@@ -120,4 +129,19 @@ void Drivetrain::ResetSensors()
 float Drivetrain::GetYaw()
 {
   return m_AHRS->GetYaw();
+}
+
+float Drivetrain::GetRightEncoderPosition()
+{
+  return m_FrontRightMotorMaster->GetSelectedSensorPosition(0);
+}
+
+float Drivetrain::GetLeftEncoderPosition()
+{
+  return m_FrontLeftMotorMaster->GetSelectedSensorPosition(0);
+}
+
+void Drivetrain::InitDefaultCommand()
+{
+  SetDefaultCommand(new ArcadeDrive());
 }

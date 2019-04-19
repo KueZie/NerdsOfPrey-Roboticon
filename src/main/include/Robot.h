@@ -12,21 +12,10 @@
 #include <frc/smartdashboard/SendableChooser.h>
 
 #include "OI.h"
-#include "subsystems/Arm.h"
-#include "subsystems/Cargo.h"
-#include "subsystems/Drivetrain.h"
-#include "subsystems/Hatch.h"
-#include "subsystems/HatchSlider.h"
+#include "subsystems/Subsystems.h"
 
 class Robot : public frc::TimedRobot {
 public:
-  //Arm* m_ArmSystem;
-  /*static Cargo       m_CargoSystem     = Cargo::GetInstance();
-  static Hatch       m_HatchSystem       = Hatch::GetInstance();
-  static Drivetrain  m_DrivetrainSystem  = Drivetrain::GetInstance();
-  static HatchSlider m_HatchSliderSystem = HatchSlider::GetInstance();
-  static OI          m_OI                = OI::GetInstance();*/
-
   void RobotInit() override;
   void RobotPeriodic() override;
   void DisabledInit() override;
@@ -42,4 +31,12 @@ private:
   // doesn't have undefined behavior and potentially crash.
   frc::Command* m_autonomousCommand = nullptr;
   frc::SendableChooser<frc::Command*> m_chooser;
+
+  Arm* m_ArmSubsystem;
+  Cargo* m_CargoSubsystem;
+  Hatch* m_HatchSubsystem;
+  Climber* m_ClimberSubsystem;
+  Drivetrain* m_DrivetrainSubsystem;
+  HatchSlider* m_HatchSliderSubsystem;
+  OI* m_OI;
 };

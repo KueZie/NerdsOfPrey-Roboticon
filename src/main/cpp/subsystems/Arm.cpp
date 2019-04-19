@@ -27,6 +27,18 @@ Arm::Arm() : Subsystem("Arm")
 
   m_LeftMotorMaster->SetNeutralMode(NeutralMode::Brake);
   m_RightMotorSlave->SetNeutralMode(NeutralMode::Brake);
+
+  m_LeftMotorMaster->ConfigNominalOutputForward(0.0f, constants::TIMEOUT_MS);
+  m_LeftMotorMaster->ConfigNominalOutputReverse(0.0f, constants::TIMEOUT_MS);
+  m_LeftMotorMaster->ConfigPeakOutputForward(0.5f, constants::TIMEOUT_MS);
+  m_LeftMotorMaster->ConfigPeakOutputReverse(0.5f, constants::TIMEOUT_MS);
+
+  /*
+  m_LeftMotorMaster->Config_kP();
+  m_LeftMotorMaster->Config_kI();
+  m_LeftMotorMaster->Config_kD();
+  m_LeftMotorMaster->Config_kF();
+  */
 }
 
 Arm* Arm::GetInstance()

@@ -7,6 +7,8 @@
 
 #include "OI.h"
 
+OI* OI::m_Instance = nullptr;
+
 OI::OI() {
   m_Controller.reset( new frc::Joystick(constants::controls::CONTROLLER_ID) );
   m_ButtonBox.reset( new frc::Joystick(constants::controls::BUTTON_BOX_ID) );
@@ -17,4 +19,11 @@ OI::OI() {
   m_CargoInBtn->WhenPressed(new CargoIn());
   m_CargoOutBtn->WhenPressed(new CargoOut());
   
+}
+
+OI* OI::GetInstance()
+{
+  if (m_Instance == nullptr)
+    m_Instance = new OI();
+  return m_Instance;
 }

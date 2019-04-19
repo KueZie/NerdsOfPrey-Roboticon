@@ -18,6 +18,7 @@ namespace constants
     {
         constexpr float MAX_THROTTLE = 0.5f;
         constexpr float MAX_TURN_SPEED = 0.25f;
+        constexpr float DEADBAND = 0.08f;
         namespace left
         {
             constexpr int FRONT_MOTOR_ID  = 0;

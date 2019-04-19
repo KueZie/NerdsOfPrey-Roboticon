@@ -13,6 +13,7 @@
 #include <memory>
 #include "Constants.h"
 #include "util/Functions.h"
+#include "commands/ArcadeDrive.h"
 
 class Drivetrain : public frc::Subsystem {
 private:
@@ -34,11 +35,15 @@ private:
   Drivetrain(); // Prevent instantiation outside of this class
 public:
   static Drivetrain* GetInstance();
-  void ArcadeDrive(float throttle, float rotationSpeed);
-  void TankDrive(float left, float right);
+  void Arcade(float throttle, float rotationSpeed);
+  void Tank(float left, float right);
+  float ResolveDeadband(float power);
   void ResetEncoderPositions();
   void ResetGyro();
   void ResetSensors();
   float GetYaw();
+  float GetLeftEncoderPosition();
+  float GetRightEncoderPosition();
+  virtual void InitDefaultCommand() override;
   ~Drivetrain() { delete m_Instance; }
 };
