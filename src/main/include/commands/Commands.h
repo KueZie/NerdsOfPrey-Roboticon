@@ -18,3 +18,5 @@
 #include "CargoOff.h"
 
 #include "FollowTrajectory.h"
+#include "ArcadeDrive.h"
+#include "TankDrive.h"
