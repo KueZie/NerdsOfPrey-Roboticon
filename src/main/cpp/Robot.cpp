@@ -10,8 +10,23 @@
 #include <frc/commands/Scheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
+Arm*         Robot::m_ArmSubsystem;
+Cargo*       Robot::m_CargoSubsystem;
+Hatch*       Robot::m_HatchSubsystem;
+Climber*     Robot::m_ClimberSubsystem;
+Drivetrain*  Robot::m_DrivetrainSubsystem;
+HatchSlider* Robot::m_HatchSliderSubsystem;
+OI*          Robot::m_OI;
+
 void Robot::RobotInit() {
   frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
+  m_ArmSubsystem = Arm::GetInstance();
+  m_CargoSubsystem = Cargo::GetInstance();
+  m_HatchSubsystem = Hatch::GetInstance();
+  m_HatchSliderSubsystem = HatchSlider::GetInstance();
+  m_DrivetrainSubsystem = Drivetrain::GetInstance();
+  m_ClimberSubsystem = Climber::GetInstance();
+  m_OI = OI::GetInstance();
 }
 
 /**
