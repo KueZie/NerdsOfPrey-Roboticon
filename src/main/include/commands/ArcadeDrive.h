@@ -11,8 +11,10 @@
 #include "subsystems/Drivetrain.h"
 #include "OI.h"
 
-class ArcadeDrive : public frc::InstantCommand {
+class ArcadeDrive : public frc::Command {
  public:
   ArcadeDrive();
   void Initialize() override;
+  void Execute() override;
+  bool IsFinished() override;
 };

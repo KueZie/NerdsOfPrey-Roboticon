@@ -23,12 +23,12 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain")
 
   m_AHRS.reset( new AHRS(SPI::Port::kMXP) );
 
-  m_FrontLeftMotorMaster-> ConfigFactoryDefault();
+  /*m_FrontLeftMotorMaster-> ConfigFactoryDefault();
   m_FrontRightMotorMaster->ConfigFactoryDefault();
   m_MiddleLeftMotorSlave-> ConfigFactoryDefault();
   m_MiddleRightMotorSlave->ConfigFactoryDefault();
   m_BackLeftMotorSlave->   ConfigFactoryDefault();
-  m_BackRightMotorSlave->  ConfigFactoryDefault();
+  m_BackRightMotorSlave->  ConfigFactoryDefault();*/
 
   m_FrontLeftMotorMaster-> ClearStickyFaults(constants::TIMEOUT_MS);
   m_FrontRightMotorMaster->ClearStickyFaults(constants::TIMEOUT_MS);
@@ -38,11 +38,11 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain")
   m_BackRightMotorSlave->  ClearStickyFaults(constants::TIMEOUT_MS);
 
   // Config master-slave
-  m_MiddleLeftMotorSlave-> Follow(*m_FrontLeftMotorMaster);
+  /*m_MiddleLeftMotorSlave-> Follow(*m_FrontLeftMotorMaster);
   m_MiddleRightMotorSlave->Follow(*m_FrontRightMotorMaster);
 
   m_BackLeftMotorSlave-> Follow(*m_FrontLeftMotorMaster);
-  m_BackRightMotorSlave->Follow(*m_FrontRightMotorMaster);
+  m_BackRightMotorSlave->Follow(*m_FrontRightMotorMaster);*/
 
   // Setup encoders
   m_FrontLeftMotorMaster-> ConfigSelectedFeedbackSensor(FeedbackDevice::CTRE_MagEncoder_Relative, 0, constants::TIMEOUT_MS);
@@ -87,15 +87,14 @@ Drivetrain* Drivetrain::GetInstance()
 
 float Drivetrain::ResolveDeadband(float power)
 {
-  bool isPositive = power == abs(power);
   if (abs(power) < constants::drivetrain::DEADBAND)
-    return isPositive ?  constants::drivetrain::DEADBAND 
-                      : -constants::drivetrain::DEADBAND;
+    return 0;
   return power;
 }
 
 void Drivetrain::Arcade(float throttle, float rotationSpeed)
 {
+  std::cout << "Running arcade..." << std::endl;
   float normalizedRotationSpeed = functions::clamp(rotationSpeed, -constants::drivetrain::MAX_TURN_SPEED, constants::drivetrain::MAX_TURN_SPEED);
   float normalizedThrottle = functions::clamp(throttle, -constants::drivetrain::MAX_THROTTLE, constants::drivetrain::MAX_THROTTLE);
   float left  = functions::normalize(throttle + rotationSpeed);
