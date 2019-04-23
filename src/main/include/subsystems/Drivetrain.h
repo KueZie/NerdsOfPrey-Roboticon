@@ -50,6 +50,8 @@ public:
   float GetRightEncoderPosition();
   float GetCurrentDraw();
   float GetVoltage();
+  float GetLeftPercentOutput();
+  float GetRightPercentOutput();
   virtual void InitDefaultCommand() override;
   ~Drivetrain() { delete m_Instance; }
 };

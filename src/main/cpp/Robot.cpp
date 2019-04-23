@@ -43,6 +43,8 @@ void Robot::RobotPeriodic()
 {
   frc::SmartDashboard::PutNumber("R Drive Enc.", m_DrivetrainSubsystem->GetRightEncoderPosition());
   frc::SmartDashboard::PutNumber("L Drive Enc.", m_DrivetrainSubsystem->GetLeftEncoderPosition());
+  frc::SmartDashboard::PutNumber("R Drive POut.", m_DrivetrainSubsystem->GetRightPercentOutput());
+  frc::SmartDashboard::PutNumber("L Drive POut.", m_DrivetrainSubsystem->GetLeftPercentOutput());
   frc::SmartDashboard::PutString("HatchSlider", m_HatchSliderSubsystem->IsExtended() ? "Extended" : "Stowed");
   frc::SmartDashboard::PutString("HatchSystem", m_HatchSubsystem->IsGrabbing() ? "Grabbing" : "Not Grabbing");
 }

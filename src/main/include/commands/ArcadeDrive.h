@@ -10,6 +10,7 @@
 #include <frc/commands/InstantCommand.h>
 #include "subsystems/Drivetrain.h"
 #include "OI.h"
+#include <iostream>
 
 class ArcadeDrive : public frc::Command {
  public:

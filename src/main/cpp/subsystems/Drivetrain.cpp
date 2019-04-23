@@ -12,14 +12,14 @@ Drivetrain* Drivetrain::m_Instance = nullptr;
 Drivetrain::Drivetrain() : Subsystem("Drivetrain")
 {
   // Setup controllers
-  m_FrontLeftMotorMaster.reset(  new TalonSRX(constants::drivetrain::left::FRONT_MOTOR_ID ) );
-  m_FrontRightMotorMaster.reset( new TalonSRX(constants::drivetrain::right::FRONT_MOTOR_ID) );
+  m_FrontLeftMotorMaster.reset(  new TalonSRX(1) );
+  m_FrontRightMotorMaster.reset( new TalonSRX(2) );
 
-  m_MiddleLeftMotorSlave.reset(  new VictorSPX(constants::drivetrain::left::MIDDLE_MOTOR_ID ) );
-  m_MiddleRightMotorSlave.reset( new VictorSPX(constants::drivetrain::right::MIDDLE_MOTOR_ID) );
+  // m_MiddleLeftMotorSlave.reset(  new VictorSPX(constants::drivetrain::left::MIDDLE_MOTOR_ID ) );
+  // m_MiddleRightMotorSlave.reset( new VictorSPX(constants::drivetrain::right::MIDDLE_MOTOR_ID) );
 
-  m_BackLeftMotorSlave.reset(    new VictorSPX(constants::drivetrain::left::BACK_MOTOR_ID ) );
-  m_BackRightMotorSlave.reset(   new VictorSPX(constants::drivetrain::right::BACK_MOTOR_ID) );
+  // m_BackLeftMotorSlave.reset(    new VictorSPX(constants::drivetrain::left::BACK_MOTOR_ID ) );
+  // m_BackRightMotorSlave.reset(   new VictorSPX(constants::drivetrain::right::BACK_MOTOR_ID) );
 
   m_AHRS.reset( new AHRS(SPI::Port::kMXP) );
 
@@ -30,12 +30,12 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain")
   m_BackLeftMotorSlave->   ConfigFactoryDefault();
   m_BackRightMotorSlave->  ConfigFactoryDefault();*/
 
-  m_FrontLeftMotorMaster-> ClearStickyFaults(constants::TIMEOUT_MS);
-  m_FrontRightMotorMaster->ClearStickyFaults(constants::TIMEOUT_MS);
-  m_MiddleLeftMotorSlave-> ClearStickyFaults(constants::TIMEOUT_MS);
-  m_MiddleRightMotorSlave->ClearStickyFaults(constants::TIMEOUT_MS);
-  m_BackLeftMotorSlave->   ClearStickyFaults(constants::TIMEOUT_MS);
-  m_BackRightMotorSlave->  ClearStickyFaults(constants::TIMEOUT_MS);
+  // m_FrontLeftMotorMaster-> ClearStickyFaults(constants::TIMEOUT_MS);
+  // m_FrontRightMotorMaster->ClearStickyFaults(constants::TIMEOUT_MS);
+  // m_MiddleLeftMotorSlave-> ClearStickyFaults(constants::TIMEOUT_MS);
+  // m_MiddleRightMotorSlave->ClearStickyFaults(constants::TIMEOUT_MS);
+  // m_BackLeftMotorSlave->   ClearStickyFaults(constants::TIMEOUT_MS);
+  // m_BackRightMotorSlave->  ClearStickyFaults(constants::TIMEOUT_MS);
 
   // Config master-slave
   /*m_MiddleLeftMotorSlave-> Follow(*m_FrontLeftMotorMaster);
@@ -51,31 +51,32 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain")
   m_FrontRightMotorMaster->SetSensorPhase(false);
 
   // Setup motor inversions
-  m_FrontLeftMotorMaster-> SetInverted(InvertType::None);
-  m_FrontRightMotorMaster->SetInverted(InvertType::InvertMotorOutput);
-  m_MiddleLeftMotorSlave-> SetInverted(InvertType::FollowMaster);
-  m_MiddleRightMotorSlave->SetInverted(InvertType::FollowMaster);
-  m_BackLeftMotorSlave->   SetInverted(InvertType::FollowMaster);
-  m_BackRightMotorSlave->  SetInverted(InvertType::FollowMaster);
+  m_FrontLeftMotorMaster-> SetInverted(InvertType::InvertMotorOutput);
+  m_FrontRightMotorMaster->SetInverted(InvertType::None);
+  // m_MiddleLeftMotorSlave-> SetInverted(InvertType::FollowMaster);
+  // m_MiddleRightMotorSlave->SetInverted(InvertType::FollowMaster);
+  // m_BackLeftMotorSlave->   SetInverted(InvertType::FollowMaster);
+  // m_BackRightMotorSlave->  SetInverted(InvertType::FollowMaster);
 
   m_FrontLeftMotorMaster-> SetNeutralMode(NeutralMode::Brake);
   m_FrontRightMotorMaster->SetNeutralMode(NeutralMode::Brake);
-  m_MiddleLeftMotorSlave-> SetNeutralMode(NeutralMode::Brake);
-  m_MiddleRightMotorSlave->SetNeutralMode(NeutralMode::Brake);
-  m_BackLeftMotorSlave->   SetNeutralMode(NeutralMode::Brake);
-  m_BackRightMotorSlave->  SetNeutralMode(NeutralMode::Brake);
+  // m_MiddleLeftMotorSlave-> SetNeutralMode(NeutralMode::Brake);
+  // m_MiddleRightMotorSlave->SetNeutralMode(NeutralMode::Brake);
+  // m_BackLeftMotorSlave->   SetNeutralMode(NeutralMode::Brake);
+  // m_BackRightMotorSlave->  SetNeutralMode(NeutralMode::Brake);
 
   m_FrontLeftMotorMaster->ConfigNominalOutputForward(0.0f, constants::TIMEOUT_MS);
   m_FrontLeftMotorMaster->ConfigNominalOutputReverse(0.0f, constants::TIMEOUT_MS);
   m_FrontLeftMotorMaster->ConfigPeakOutputForward   (0.5f, constants::TIMEOUT_MS);
-  m_FrontLeftMotorMaster->ConfigPeakOutputReverse   (0.5f, constants::TIMEOUT_MS);
+  m_FrontLeftMotorMaster->ConfigPeakOutputReverse   (-0.5f, constants::TIMEOUT_MS);
   m_FrontLeftMotorMaster->ConfigOpenloopRamp(1, constants::TIMEOUT_MS);
-
   m_FrontRightMotorMaster->ConfigNominalOutputForward(0.0f, constants::TIMEOUT_MS);
   m_FrontRightMotorMaster->ConfigNominalOutputReverse(0.0f, constants::TIMEOUT_MS);
   m_FrontRightMotorMaster->ConfigPeakOutputForward   (0.5f, constants::TIMEOUT_MS);
-  m_FrontRightMotorMaster->ConfigPeakOutputReverse   (0.5f, constants::TIMEOUT_MS);
+  m_FrontRightMotorMaster->ConfigPeakOutputReverse   (-0.5f, constants::TIMEOUT_MS);
   m_FrontRightMotorMaster->ConfigOpenloopRamp(1, constants::TIMEOUT_MS);
+
+  ResetSensors();
 }
 
 Drivetrain* Drivetrain::GetInstance()
@@ -95,17 +96,20 @@ float Drivetrain::ResolveDeadband(float power)
 void Drivetrain::Arcade(float throttle, float rotationSpeed)
 {
   std::cout << "Running arcade..." << std::endl;
-  float normalizedRotationSpeed = functions::clamp(rotationSpeed, -constants::drivetrain::MAX_TURN_SPEED, constants::drivetrain::MAX_TURN_SPEED);
-  float normalizedThrottle = functions::clamp(throttle, -constants::drivetrain::MAX_THROTTLE, constants::drivetrain::MAX_THROTTLE);
-  float left  = functions::normalize(throttle + rotationSpeed);
-  float right = functions::normalize(throttle - rotationSpeed);
+  // float normalizedRotationSpeed = functions::clamp(rotationSpeed, -constants::drivetrain::MAX_TURN_SPEED, constants::drivetrain::MAX_TURN_SPEED);
+  // float normalizedThrottle = functions::clamp(throttle, -constants::drivetrain::MAX_THROTTLE, constants::drivetrain::MAX_THROTTLE);
+  float left  = functions::clamp(throttle - rotationSpeed);
+  float right = functions::clamp(throttle + rotationSpeed);
   Tank(left, right);
 }
 
 void Drivetrain::Tank(float left, float right)
 {
-  m_FrontLeftMotorMaster->Set(ControlMode::PercentOutput, ResolveDeadband( functions::normalize(left) ));
-  m_FrontRightMotorMaster->Set(ControlMode::PercentOutput, ResolveDeadband( functions::normalize(right) ));
+  double leftPower  = ManageDeadband( functions::normalize(left) );
+  double rightPower = ManageDeadband( functions::normalize(right) );
+  m_FrontLeftMotorMaster->Set(ControlMode::PercentOutput, leftPower);
+  m_FrontRightMotorMaster->Set(ControlMode::PercentOutput, rightPower);
+  std::cout << "TankPower(" << GetLeftPercentOutput() << ", " << GetRightPercentOutput() << ")\n";
 }
 
 void Drivetrain::ResetEncoderPositions()
@@ -138,6 +142,16 @@ float Drivetrain::GetRightEncoderPosition()
 float Drivetrain::GetLeftEncoderPosition()
 {
   return m_FrontLeftMotorMaster->GetSelectedSensorPosition(0);
+}
+
+float Drivetrain::GetLeftPercentOutput()
+{
+  return m_FrontLeftMotorMaster->GetMotorOutputPercent();
+}
+
+float Drivetrain::GetRightPercentOutput()
+{
+  return m_FrontRightMotorMaster->GetMotorOutputPercent();
 }
 
 void Drivetrain::InitDefaultCommand()
