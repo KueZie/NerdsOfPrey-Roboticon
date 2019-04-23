@@ -26,4 +26,5 @@ public:
   void Release();
   void Toggle();
   void Off();
+  bool IsGrabbing();
 };

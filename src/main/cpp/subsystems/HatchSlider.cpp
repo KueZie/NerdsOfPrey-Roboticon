@@ -46,3 +46,8 @@ void HatchSlider::Off()
 {
   m_DSolenoid->Set(frc::DoubleSolenoid::Value::kOff);
 }
+
+bool HatchSlider::IsExtended()
+{
+  return m_IsOut;
+}
