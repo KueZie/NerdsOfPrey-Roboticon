@@ -32,11 +32,12 @@ private:
   frc::Command* m_autonomousCommand = nullptr;
   frc::SendableChooser<frc::Command*> m_chooser;
 
-  static Arm* m_ArmSubsystem;
-  static Cargo* m_CargoSubsystem;
-  static Hatch* m_HatchSubsystem;
-  static Climber* m_ClimberSubsystem;
-  static Drivetrain* m_DrivetrainSubsystem;
-  static HatchSlider* m_HatchSliderSubsystem;
-  static OI* m_OI;
+  static Arm*                    m_ArmSubsystem;
+  static Cargo*                  m_CargoSubsystem;
+  static Hatch*                  m_HatchSubsystem;
+  static Climber*                m_ClimberSubsystem;
+  static Drivetrain*             m_DrivetrainSubsystem;
+  static HatchSlider*            m_HatchSliderSubsystem;
+  static OI*                     m_OI;
+  static PowerDistributionPanel* m_PDP;
 };

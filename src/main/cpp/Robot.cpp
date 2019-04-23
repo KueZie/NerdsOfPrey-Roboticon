@@ -10,13 +10,14 @@
 #include <frc/commands/Scheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
-Arm*         Robot::m_ArmSubsystem;
-Cargo*       Robot::m_CargoSubsystem;
-Hatch*       Robot::m_HatchSubsystem;
-Climber*     Robot::m_ClimberSubsystem;
-Drivetrain*  Robot::m_DrivetrainSubsystem;
-HatchSlider* Robot::m_HatchSliderSubsystem;
-OI*          Robot::m_OI;
+Arm*                    Robot::m_ArmSubsystem;
+Cargo*                  Robot::m_CargoSubsystem;
+Hatch*                  Robot::m_HatchSubsystem;
+Climber*                Robot::m_ClimberSubsystem;
+Drivetrain*             Robot::m_DrivetrainSubsystem;
+HatchSlider*            Robot::m_HatchSliderSubsystem;
+OI*                     Robot::m_OI;
+PowerDistributionPanel* Robot::m_PDP;
 
 void Robot::RobotInit() {
   frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
@@ -27,6 +28,7 @@ void Robot::RobotInit() {
   m_DrivetrainSubsystem = Drivetrain::GetInstance();
   m_ClimberSubsystem = Climber::GetInstance();
   m_OI = OI::GetInstance();
+  m_PDP = new PowerDistributionPanel(0);
 }
 
 /**
@@ -37,7 +39,13 @@ void Robot::RobotInit() {
  * <p> This runs after the mode specific periodic functions, but before
  * LiveWindow and SmartDashboard integrated updating.
  */
-void Robot::RobotPeriodic() {}
+void Robot::RobotPeriodic()
+{
+  frc::SmartDashboard::PutNumber("R Drive Enc.", m_DrivetrainSubsystem->GetRightEncoderPosition());
+  frc::SmartDashboard::PutNumber("L Drive Enc.", m_DrivetrainSubsystem->GetLeftEncoderPosition());
+  frc::SmartDashboard::PutString("HatchSlider", m_HatchSliderSubsystem->IsExtended() ? "Extended" : "Stowed");
+  frc::SmartDashboard::PutString("HatchSystem", m_HatchSubsystem->IsGrabbing() ? "Grabbing" : "Not Grabbing");
+}
 
 /**
  * This function is called once each time the robot enters Disabled mode. You

@@ -26,4 +26,5 @@ public:
   void In();
   void Toggle();
   void Off();
+  bool IsExtended();
 };

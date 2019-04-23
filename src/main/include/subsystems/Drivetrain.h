@@ -15,6 +15,9 @@
 #include "util/Functions.h"
 #include "commands/ArcadeDrive.h"
 
+// TODOS
+// Implement current and voltage draw method
+
 class Drivetrain : public frc::Subsystem {
 private:
   // Master controllers
@@ -44,6 +47,8 @@ public:
   float GetYaw();
   float GetLeftEncoderPosition();
   float GetRightEncoderPosition();
+  float GetCurrentDraw();
+  float GetVoltage();
   virtual void InitDefaultCommand() override;
   ~Drivetrain() { delete m_Instance; }
 };

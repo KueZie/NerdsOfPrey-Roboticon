@@ -46,3 +46,8 @@ void Hatch::Off()
 {
   m_DSolenoid->Set(frc::DoubleSolenoid::Value::kOff);
 }
+
+bool Hatch::IsGrabbing()
+{
+  return m_IsGrabbing;
+}
