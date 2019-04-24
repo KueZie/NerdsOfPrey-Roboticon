@@ -51,8 +51,8 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain")
   m_FrontRightMotorMaster->SetSensorPhase(false);
 
   // Setup motor inversions
-  m_FrontLeftMotorMaster-> SetInverted(InvertType::InvertMotorOutput);
-  m_FrontRightMotorMaster->SetInverted(InvertType::None);
+  m_FrontLeftMotorMaster-> SetInverted(InvertType::None);
+  m_FrontRightMotorMaster->SetInverted(InvertType::InvertMotorOutput);
   // m_MiddleLeftMotorSlave-> SetInverted(InvertType::FollowMaster);
   // m_MiddleRightMotorSlave->SetInverted(InvertType::FollowMaster);
   // m_BackLeftMotorSlave->   SetInverted(InvertType::FollowMaster);
@@ -69,12 +69,13 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain")
   m_FrontLeftMotorMaster->ConfigNominalOutputReverse(0.0f, constants::TIMEOUT_MS);
   m_FrontLeftMotorMaster->ConfigPeakOutputForward   (0.5f, constants::TIMEOUT_MS);
   m_FrontLeftMotorMaster->ConfigPeakOutputReverse   (-0.5f, constants::TIMEOUT_MS);
-  m_FrontLeftMotorMaster->ConfigOpenloopRamp(1, constants::TIMEOUT_MS);
+  m_FrontLeftMotorMaster->ConfigOpenloopRamp(0.0f, constants::TIMEOUT_MS);
+  
   m_FrontRightMotorMaster->ConfigNominalOutputForward(0.0f, constants::TIMEOUT_MS);
   m_FrontRightMotorMaster->ConfigNominalOutputReverse(0.0f, constants::TIMEOUT_MS);
   m_FrontRightMotorMaster->ConfigPeakOutputForward   (0.5f, constants::TIMEOUT_MS);
   m_FrontRightMotorMaster->ConfigPeakOutputReverse   (-0.5f, constants::TIMEOUT_MS);
-  m_FrontRightMotorMaster->ConfigOpenloopRamp(1, constants::TIMEOUT_MS);
+  m_FrontRightMotorMaster->ConfigOpenloopRamp(0.0f, constants::TIMEOUT_MS);
 
   ResetSensors();
 }
@@ -98,15 +99,15 @@ void Drivetrain::Arcade(float throttle, float rotationSpeed)
   std::cout << "Running arcade..." << std::endl;
   // float normalizedRotationSpeed = functions::clamp(rotationSpeed, -constants::drivetrain::MAX_TURN_SPEED, constants::drivetrain::MAX_TURN_SPEED);
   // float normalizedThrottle = functions::clamp(throttle, -constants::drivetrain::MAX_THROTTLE, constants::drivetrain::MAX_THROTTLE);
-  float left  = functions::clamp(throttle - rotationSpeed);
-  float right = functions::clamp(throttle + rotationSpeed);
+  float left  = functions::normalize(throttle - rotationSpeed);
+  float right = functions::normalize(throttle + rotationSpeed);
   Tank(left, right);
 }
 
 void Drivetrain::Tank(float left, float right)
 {
-  double leftPower  = ManageDeadband( functions::normalize(left) );
-  double rightPower = ManageDeadband( functions::normalize(right) );
+  double leftPower  = ResolveDeadband( functions::normalize(left) );
+  double rightPower = ResolveDeadband( functions::normalize(right) );
   m_FrontLeftMotorMaster->Set(ControlMode::PercentOutput, leftPower);
   m_FrontRightMotorMaster->Set(ControlMode::PercentOutput, rightPower);
   std::cout << "TankPower(" << GetLeftPercentOutput() << ", " << GetRightPercentOutput() << ")\n";
