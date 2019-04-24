@@ -12,7 +12,7 @@ Arm* Arm::m_Instance = nullptr;
 Arm::Arm() : Subsystem("Arm")
 {
   m_LeftMotorMaster.reset( new TalonSRX(constants::arm::LEFT_MOTOR_ID) );
-  m_RightMotorSlave.reset( new TalonSRX(constants::arm::RIGHT_MOTOR_ID) );
+  m_RightMotorSlave.reset( new VictorSPX(constants::arm::RIGHT_MOTOR_ID) );
 
   m_LeftMotorMaster->ConfigFactoryDefault();
   m_RightMotorSlave->ConfigFactoryDefault();
@@ -48,12 +48,7 @@ Arm* Arm::GetInstance()
   return m_Instance;
 }
 
-float Arm::GetLeftEncoderPosition()
+float Arm::GetEncoderPosition()
 {
   return m_LeftMotorMaster->GetSelectedSensorPosition(0);
-}
-
-float Arm::GetRightEncoderPosition()
-{
-  return m_RightMotorSlave->GetSelectedSensorPosition(0);
 }

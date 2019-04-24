@@ -77,6 +77,9 @@
     "*.tcc": "cpp",
     "deque": "cpp",
     "queue": "cpp",
-    "stack": "cpp"
+    "stack": "cpp",
+    "complex": "cpp",
+    "cstdarg": "cpp",
+    "iomanip": "cpp"
   }
 }
