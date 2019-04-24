@@ -30,13 +30,6 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain")
   m_BackLeftMotorSlave->   ConfigFactoryDefault();
   m_BackRightMotorSlave->  ConfigFactoryDefault();*/
 
-  // m_FrontLeftMotorMaster-> ClearStickyFaults(constants::TIMEOUT_MS);
-  // m_FrontRightMotorMaster->ClearStickyFaults(constants::TIMEOUT_MS);
-  // m_MiddleLeftMotorSlave-> ClearStickyFaults(constants::TIMEOUT_MS);
-  // m_MiddleRightMotorSlave->ClearStickyFaults(constants::TIMEOUT_MS);
-  // m_BackLeftMotorSlave->   ClearStickyFaults(constants::TIMEOUT_MS);
-  // m_BackRightMotorSlave->  ClearStickyFaults(constants::TIMEOUT_MS);
-
   // Config master-slave
   /*m_MiddleLeftMotorSlave-> Follow(*m_FrontLeftMotorMaster);
   m_MiddleRightMotorSlave->Follow(*m_FrontRightMotorMaster);
@@ -64,6 +57,13 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain")
   // m_MiddleRightMotorSlave->SetNeutralMode(NeutralMode::Brake);
   // m_BackLeftMotorSlave->   SetNeutralMode(NeutralMode::Brake);
   // m_BackRightMotorSlave->  SetNeutralMode(NeutralMode::Brake);
+
+  m_FrontLeftMotorMaster-> ClearStickyFaults(constants::TIMEOUT_MS);
+  m_FrontRightMotorMaster->ClearStickyFaults(constants::TIMEOUT_MS);
+  // m_MiddleLeftMotorSlave-> ClearStickyFaults(constants::TIMEOUT_MS);
+  // m_MiddleRightMotorSlave->ClearStickyFaults(constants::TIMEOUT_MS);
+  // m_BackLeftMotorSlave->   ClearStickyFaults(constants::TIMEOUT_MS);
+  // m_BackRightMotorSlave->  ClearStickyFaults(constants::TIMEOUT_MS);
 
   m_FrontLeftMotorMaster->ConfigNominalOutputForward(0.0f, constants::TIMEOUT_MS);
   m_FrontLeftMotorMaster->ConfigNominalOutputReverse(0.0f, constants::TIMEOUT_MS);
@@ -111,6 +111,101 @@ void Drivetrain::Tank(float left, float right)
   m_FrontLeftMotorMaster->Set(ControlMode::PercentOutput, leftPower);
   m_FrontRightMotorMaster->Set(ControlMode::PercentOutput, rightPower);
   std::cout << "TankPower(" << GetLeftPercentOutput() << ", " << GetRightPercentOutput() << ")\n";
+}
+
+void Drivetrain::Curvature(float throttle, float wheel)
+{
+  double wheelNonLinearity = 0.5f;
+  wheel = ResolveDeadband(wheel);
+  throttle = ResolveDeadband(throttle);
+  bool isQuickTurn = throttle == 0;
+  float sensitivity = constants::drivetrain::SENSITIVITY;
+
+  double negativeInertia = wheel - m_OldWheel;
+  m_OldWheel = wheel;
+  for (int i = 0; i < 3; ++i)
+    wheel = CurvatureSinScalar(wheelNonLinearity, wheel);
+
+  double leftPWM, rightPWM, overPower;
+  double angularPower;
+  double linearPower;
+  // Negative inertia!
+  double negativeInertiaAccumulator = 0.0;
+  double negativeInertiaScalar;
+
+  if (wheel * negativeInertia < 0)
+    negativeInertiaScalar = 2.5f;
+  else
+    if (fabs(wheel) > 0.65)
+      negativeInertiaScalar = 5.0f;
+    else
+      negativeInertiaScalar = 3.0f;
+  double negativeInertiaPower = negativeInertia * negativeInertiaScalar;
+  negativeInertiaAccumulator += negativeInertiaPower;
+
+  wheel = wheel + negativeInertiaPower;
+  if (negativeInertiaAccumulator > 1)
+    negativeInertiaAccumulator -= 1;
+  else if (negativeInertiaAccumulator > -1)
+    negativeInertiaAccumulator += 1;
+  else
+    negativeInertiaAccumulator = 0;
+
+  linearPower = throttle;
+  
+  if (isQuickTurn)
+  {
+    if (abs(throttle) < 0.2f)
+    {
+      double alpha = 0.1;
+      m_QuickStopAccumulator = (1 - alpha) * m_QuickStopAccumulator + alpha * functions::clamp(wheel, -1, 1);
+    }
+    overPower = 1.0f;
+    sensitivity = 1.0f;
+    angularPower = wheel;
+  }
+  else
+  {
+    overPower = 0.0f;
+    angularPower = abs(throttle) * wheel * sensitivity - m_QuickStopAccumulator;
+    if (m_QuickStopAccumulator > 1) {
+        m_QuickStopAccumulator -= 1;
+      } else if (m_QuickStopAccumulator < -1) {
+        m_QuickStopAccumulator += 1;
+      } else {
+        m_QuickStopAccumulator = 0.0;
+      }
+  }
+
+  rightPWM = linearPower - angularPower;
+  leftPWM = linearPower + angularPower;
+
+  if (leftPWM > 1.0) {
+    rightPWM -= overPower * (leftPWM - 1.0);
+    leftPWM = 1.0;
+  } 
+  else if (rightPWM > 1.0) 
+  {
+    leftPWM -= overPower * (rightPWM - 1.0);
+    rightPWM = 1.0;
+  }
+  else if (leftPWM < -1.0) 
+  {
+    rightPWM += overPower * (-1.0 - leftPWM);
+    leftPWM = -1.0;
+  } 
+  else if (rightPWM < -1.0) 
+  {
+    leftPWM += overPower * (-1.0 - rightPWM);
+    rightPWM = -1.0;
+  }
+  Tank(leftPWM, rightPWM);
+}
+
+double Drivetrain::CurvatureSinScalar(double wheelNonLinearity, double wheel)
+{
+  wheel = sin(constants::PI / 2.0 * wheelNonLinearity * wheel)
+              / sin(constants::PI / 2.0 * wheelNonLinearity);
 }
 
 void Drivetrain::ResetEncoderPositions()

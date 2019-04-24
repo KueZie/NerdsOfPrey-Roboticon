@@ -31,16 +31,21 @@ private:
   std::unique_ptr<VictorSPX> m_BackLeftMotorSlave;
   std::unique_ptr<VictorSPX> m_BackRightMotorSlave;
 
+  // Curvature drive variables
+  double m_QuickStopAccumulator, m_OldWheel;
+
   // Gyro
   std::unique_ptr<AHRS> m_AHRS;
 
   static Drivetrain* m_Instance;
 
   Drivetrain(); // Prevent instantiation outside of this class
+  double CurvatureSinScalar(double wheelNonLinearity, double wheel);
 public:
   static Drivetrain* GetInstance();
   void Arcade(float throttle, float rotationSpeed);
   void Tank(float left, float right);
+  void Curvature(float throttle, float wheel);
   float ResolveDeadband(float power);
   void ResetEncoderPositions();
   void ResetGyro();

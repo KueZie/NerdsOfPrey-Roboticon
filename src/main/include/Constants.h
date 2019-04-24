@@ -2,6 +2,7 @@
 
 namespace constants
 {
+    constexpr double PI = 3.14159265359f;
     constexpr int TIMEOUT_MS = 10;
     namespace controls
     {
@@ -19,6 +20,7 @@ namespace constants
         constexpr float MAX_THROTTLE = 0.5f;
         constexpr float MAX_TURN_SPEED = 0.2f;
         constexpr float DEADBAND = 0.08f;
+        constexpr float SENSITIVITY = 0.3f;
         namespace left
         {
             constexpr int FRONT_MOTOR_ID  = 1;
