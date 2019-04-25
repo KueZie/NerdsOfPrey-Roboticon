@@ -14,6 +14,7 @@
 #include "Constants.h"
 #include "util/Functions.h"
 #include "commands/ArcadeDrive.h"
+#include "commands/CurvatureDrive.h"
 #include <iostream>
 
 // TODOS

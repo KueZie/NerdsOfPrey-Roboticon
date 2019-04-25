@@ -11,13 +11,14 @@ CurvatureDrive::CurvatureDrive() {
   Requires(Drivetrain::GetInstance());
 }
 
-// Called just before this Command runs the first time
 void CurvatureDrive::Initialize() {}
 
-// Called repeatedly when this Command is scheduled to run
-void CurvatureDrive::Execute() {}
+void CurvatureDrive::Execute() 
+{
+  Drivetrain::GetInstance()->Curvature(OI::GetInstance()->m_Controller->GetRawAxis(1),
+                                       OI::GetInstance()->m_Controller->GetRawAxis(4));
+}
 
-// Make this return true when this Command no longer needs to run execute()
 bool CurvatureDrive::IsFinished() { return false; }
 
 // Called once after isFinished returns true
