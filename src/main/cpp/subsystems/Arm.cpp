@@ -37,9 +37,9 @@ Arm::Arm() : Subsystem("Arm")
   m_LeftMotorMaster->Config_kI(0.0f, 0, constants::TIMEOUT_MS);
   m_LeftMotorMaster->Config_kD(0.0f, 0, constants::TIMEOUT_MS);
   m_LeftMotorMaster->Config_kF(0.0f, 0, constants::TIMEOUT_MS);
-  m_LeftMotorMaster->SelectProfileSlot(0);
+  m_LeftMotorMaster->SelectProfileSlot(0, 0);
   m_LeftMotorMaster->ConfigMotionCruiseVelocity(1000.0f, constants::TIMEOUT_MS);
-  m_LeftMotorMaster->ConfigMotionAcceleration(1000.0f, constants::TIMEOUT_MS)
+  m_LeftMotorMaster->ConfigMotionAcceleration(1000.0f, constants::TIMEOUT_MS);
 }
 
 Arm* Arm::GetInstance()
@@ -61,7 +61,7 @@ void Arm::ResetEncoderPosition()
 
 void Arm::SetAngle(double angle)
 {
-  m_LeftMotorMaster->Set(ControlMode::MotionMagic, )
+  // m_LeftMotorMaster->Set(ControlMode::MotionMagic, angl);
 }
 
 float Arm::GetAngle()
