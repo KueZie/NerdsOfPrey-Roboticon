@@ -252,5 +252,5 @@ float Drivetrain::GetRightPercentOutput()
 
 void Drivetrain::InitDefaultCommand()
 {
-  SetDefaultCommand(new CurvatureDrive());
+  SetDefaultCommand(new ArcadeDrive());
 }

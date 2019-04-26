@@ -33,12 +33,10 @@ Arm::Arm() : Subsystem("Arm")
   m_LeftMotorMaster->ConfigPeakOutputForward(0.5f, constants::TIMEOUT_MS);
   m_LeftMotorMaster->ConfigPeakOutputReverse(0.5f, constants::TIMEOUT_MS);
 
-  /*
-  m_LeftMotorMaster->Config_kP();
-  m_LeftMotorMaster->Config_kI();
-  m_LeftMotorMaster->Config_kD();
-  m_LeftMotorMaster->Config_kF();
-  */
+  // m_LeftMotorMaster->Config_kP(0.0f);
+  // m_LeftMotorMaster->Config_kI(0.0f);
+  // m_LeftMotorMaster->Config_kD(0.0f);
+  // m_LeftMotorMaster->Config_kF(0.0f);
 }
 
 Arm* Arm::GetInstance()
