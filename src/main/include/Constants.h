@@ -14,6 +14,7 @@ namespace constants
         constexpr int HATCH_BTN_ID = 0;
         constexpr int CARGO_IN_BTN_ID = 0;
         constexpr int CARGO_OUT_BTN_ID = 0;
+        constexpr int QUICK_STOP_BTN_ID = 1;
     }
     namespace drivetrain
     {

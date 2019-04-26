@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 #include "subsystems/Drivetrain.h"
 
 Drivetrain* Drivetrain::m_Instance = nullptr;
@@ -118,7 +111,6 @@ void Drivetrain::Curvature(float throttle, float wheel)
   double wheelNonLinearity = 0.5f;
   wheel = ResolveDeadband(wheel);
   throttle = ResolveDeadband(throttle);
-  bool isQuickTurn = throttle == 0;
   float sensitivity = constants::drivetrain::SENSITIVITY;
 
   double negativeInertia = wheel - m_OldWheel;
@@ -153,7 +145,7 @@ void Drivetrain::Curvature(float throttle, float wheel)
 
   linearPower = throttle;
   
-  if (isQuickTurn)
+  if (m_IsQuickTurn)
   {
     if (abs(throttle) < 0.2f)
     {
@@ -204,8 +196,7 @@ void Drivetrain::Curvature(float throttle, float wheel)
 
 double Drivetrain::CurvatureSinScalar(double wheelNonLinearity, double wheel)
 {
-  wheel = sin(constants::PI / 2.0 * wheelNonLinearity * wheel)
-              / sin(constants::PI / 2.0 * wheelNonLinearity);
+  return sin(constants::PI / 2.0 * wheelNonLinearity * wheel) / sin(constants::PI / 2.0 * wheelNonLinearity);
 }
 
 void Drivetrain::ResetEncoderPositions()
@@ -253,4 +244,13 @@ float Drivetrain::GetRightPercentOutput()
 void Drivetrain::InitDefaultCommand()
 {
   SetDefaultCommand(new CurvatureDrive());
+}
+
+void Drivetrain::SetQuickTurn(bool quickTurn)
+{
+  m_IsQuickTurn = quickTurn;
+}
+bool Drivetrain::IsQuickTurn()
+{
+  return m_IsQuickTurn;
 }
