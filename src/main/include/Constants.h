@@ -38,6 +38,7 @@ namespace constants
     {
         constexpr int LEFT_MOTOR_ID = 0;
         constexpr int RIGHT_MOTOR_ID = 0;
+        constexpr float ANGLE_CONVERSION_FACTOR = 0.0f;
     }
     namespace hatch_intake
     {

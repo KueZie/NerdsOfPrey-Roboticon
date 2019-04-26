@@ -33,10 +33,13 @@ Arm::Arm() : Subsystem("Arm")
   m_LeftMotorMaster->ConfigPeakOutputForward(0.5f, constants::TIMEOUT_MS);
   m_LeftMotorMaster->ConfigPeakOutputReverse(0.5f, constants::TIMEOUT_MS);
 
-  // m_LeftMotorMaster->Config_kP(0.0f);
-  // m_LeftMotorMaster->Config_kI(0.0f);
-  // m_LeftMotorMaster->Config_kD(0.0f);
-  // m_LeftMotorMaster->Config_kF(0.0f);
+  m_LeftMotorMaster->Config_kP(0.0f, 0, constants::TIMEOUT_MS);
+  m_LeftMotorMaster->Config_kI(0.0f, 0, constants::TIMEOUT_MS);
+  m_LeftMotorMaster->Config_kD(0.0f, 0, constants::TIMEOUT_MS);
+  m_LeftMotorMaster->Config_kF(0.0f, 0, constants::TIMEOUT_MS);
+  m_LeftMotorMaster->SelectProfileSlot(0, 0);
+  m_LeftMotorMaster->ConfigMotionCruiseVelocity(1000.0f, constants::TIMEOUT_MS);
+  m_LeftMotorMaster->ConfigMotionAcceleration(1000.0f, constants::TIMEOUT_MS);
 }
 
 Arm* Arm::GetInstance()
@@ -49,4 +52,19 @@ Arm* Arm::GetInstance()
 float Arm::GetEncoderPosition()
 {
   return m_LeftMotorMaster->GetSelectedSensorPosition(0);
+}
+
+void Arm::ResetEncoderPosition()
+{
+  m_LeftMotorMaster->SetSelectedSensorPosition(0, 0, constants::TIMEOUT_MS);
+}
+
+void Arm::SetAngle(double angle)
+{
+  // m_LeftMotorMaster->Set(ControlMode::MotionMagic, angl);
+}
+
+float Arm::GetAngle()
+{
+  return GetEncoderPosition() * constants::arm::ANGLE_CONVERSION_FACTOR;
 }

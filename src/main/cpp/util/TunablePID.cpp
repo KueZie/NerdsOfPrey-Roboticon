@@ -16,9 +16,7 @@ void TunablePID::SetConstraints(double min, double max)
 
 void TunablePID::SetTarget(double target)
 {
-    if (target > m_Max)
-        throw TargetOutOfRange();
-    else if (target < m_Min)
+    if (target > m_Max || target < m_Min)
         throw TargetOutOfRange();
     
     m_Target = target;
