@@ -20,3 +20,4 @@
 #include "FollowTrajectory.h"
 #include "ArcadeDrive.h"
 #include "TankDrive.h"
+#include "CurvatureDrive.h"
