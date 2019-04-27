@@ -1,7 +1,11 @@
 #pragma once
 
+#include "Constants.h"
+
 namespace functions
 {
-    float clamp(float n, float min, float max);
-    float normalize(float n);
+    double clamp(double n, double min, double max);
+    double normalize(double n);
+    double to_radians(double degrees);
+    double to_degrees(double radians);
 }
