@@ -1,4 +1,4 @@
-#include "commands/ToggleHatchSlider.h"
+#include "commands/hatchslider/ToggleHatchSlider.h"
 
 ToggleHatchSlider::ToggleHatchSlider() {
   Requires(HatchSlider::GetInstance());

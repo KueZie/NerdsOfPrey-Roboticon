@@ -1,4 +1,4 @@
-#include "commands/CargoIn.h"
+#include "commands/cargo/CargoIn.h"
 
 CargoIn::CargoIn() {
   Requires(Cargo::GetInstance());

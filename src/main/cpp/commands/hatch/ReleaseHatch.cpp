@@ -1,4 +1,4 @@
-#include "commands/ReleaseHatch.h"
+#include "commands/hatch/ReleaseHatch.h"
 
 ReleaseHatch::ReleaseHatch() {
   Requires(Hatch::GetInstance());

@@ -1,4 +1,4 @@
-#include "commands/ExtendHatchSlider.h"
+#include "commands/hatchslider/ExtendHatchSlider.h"
 
 ExtendHatchSlider::ExtendHatchSlider() {
   Requires(HatchSlider::GetInstance());

@@ -1,4 +1,4 @@
-#include "commands/GrabHatch.h"
+#include "commands/hatch/GrabHatch.h"
 
 GrabHatch::GrabHatch() {
   Requires(Hatch::GetInstance());

@@ -1,4 +1,4 @@
-#include "commands/RetractHatchSlider.h"
+#include "commands/hatchslider/RetractHatchSlider.h"
 
 RetractHatchSlider::RetractHatchSlider() {
   Requires(HatchSlider::GetInstance());

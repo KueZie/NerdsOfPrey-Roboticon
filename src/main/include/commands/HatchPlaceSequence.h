@@ -9,9 +9,9 @@
 
 #include <frc/commands/CommandGroup.h>
 #include <frc/WPILib.h>
-#include "commands/ExtendHatchSlider.h"
-#include "commands/ToggleHatchSlider.h"
-#include "commands/ReleaseHatch.h"
+#include "commands/hatchslider/ExtendHatchSlider.h"
+#include "commands/hatchslider/ToggleHatchSlider.h"
+#include "commands/hatch/ReleaseHatch.h"
 
 class HatchPlaceSequence : public frc::CommandGroup {
  public:

@@ -3,7 +3,7 @@
 #include <frc/commands/Subsystem.h>
 #include <ctre/Phoenix.h>
 #include "Constants.h"
-#include "commands/CargoOff.h"
+#include "commands/cargo/CargoOff.h"
 
 class Cargo : public frc::Subsystem {
 private:

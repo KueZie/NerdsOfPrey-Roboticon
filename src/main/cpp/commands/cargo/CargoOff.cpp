@@ -1,4 +1,4 @@
-#include "commands/CargoOff.h"
+#include "commands/cargo/CargoOff.h"
 
 CargoOff::CargoOff() {
   Requires(Cargo::GetInstance());

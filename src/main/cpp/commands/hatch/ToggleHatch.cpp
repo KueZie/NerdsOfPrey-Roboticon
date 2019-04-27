@@ -1,4 +1,4 @@
-#include "commands/ToggleHatch.h"
+#include "commands/hatch/ToggleHatch.h"
 
 ToggleHatch::ToggleHatch() {
   Requires(Hatch::GetInstance());

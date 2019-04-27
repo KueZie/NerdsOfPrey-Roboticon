@@ -6,8 +6,8 @@
 #include <memory>
 #include "Constants.h"
 #include "util/Functions.h"
-#include "commands/ArcadeDrive.h"
-#include "commands/CurvatureDrive.h"
+#include "commands/drivetrain/ArcadeDrive.h"
+#include "commands/drivetrain/CurvatureDrive.h"
 #include <iostream>
 
 // TODOS

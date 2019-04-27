@@ -1,4 +1,4 @@
-#include "commands/CurvatureDrive.h"
+#include "commands/drivetrain/CurvatureDrive.h"
 
 CurvatureDrive::CurvatureDrive() {
   Requires(Drivetrain::GetInstance());
