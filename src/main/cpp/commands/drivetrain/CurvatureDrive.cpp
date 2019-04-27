@@ -9,8 +9,8 @@ void CurvatureDrive::Initialize() {}
 void CurvatureDrive::Execute() 
 {
   Drivetrain::GetInstance()->Curvature(
-    OI::GetInstance()->m_Controller->GetRawAxis(1),
-    OI::GetInstance()->m_Controller->GetRawAxis(4)
+    OI::GetInstance()->m_Controller->GetY(GenericHID::kLeftHand),
+    OI::GetInstance()->m_Controller->GetX(GenericHID::kRightHand)
   );
 }
 

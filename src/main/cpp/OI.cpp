@@ -10,7 +10,7 @@
 OI* OI::m_Instance = nullptr;
 
 OI::OI() {
-  m_Controller.reset( new frc::Joystick(constants::controls::CONTROLLER_ID) );
+  m_Controller.reset( new frc::XboxController(constants::controls::CONTROLLER_ID) );
   m_ButtonBox.reset( new frc::Joystick(constants::controls::BUTTON_BOX_ID) );
 
   m_CargoInBtn.reset( new frc::JoystickButton(m_Controller.get(), constants::controls::CARGO_IN_BTN_ID) );

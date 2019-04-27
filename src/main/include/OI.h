@@ -11,7 +11,7 @@ private:
   OI();
 public:
   static OI* GetInstance();
-  std::unique_ptr<frc::Joystick> m_Controller;
+  std::unique_ptr<frc::XboxController> m_Controller;
   std::unique_ptr<frc::Joystick> m_ButtonBox;
 
   std::unique_ptr<frc::JoystickButton> m_HatchBtn;
