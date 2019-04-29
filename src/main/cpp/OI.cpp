@@ -16,6 +16,7 @@ OI::OI() {
   m_CargoInBtn.reset( new frc::JoystickButton(m_Controller.get(), constants::controls::CARGO_IN_BTN_ID) );
   m_CargoOutBtn.reset( new frc::JoystickButton(m_Controller.get(), constants::controls::CARGO_OUT_BTN_ID) );
   m_QuickStopBtn.reset( new frc::JoystickButton(m_Controller.get(), constants::controls::QUICK_STOP_BTN_ID ));
+  m_AimToTarget.reset( new frc::JoystickButton(m_Controller.get(), constants::controls::AIM_TO_TARGET_BTN_ID ));
 
   m_CargoInBtn->WhenPressed(new CargoIn());
   m_CargoOutBtn->WhenPressed(new CargoOut());

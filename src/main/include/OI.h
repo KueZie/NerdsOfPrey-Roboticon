@@ -19,4 +19,5 @@ public:
   std::unique_ptr<frc::JoystickButton> m_CargoOutBtn;
   std::unique_ptr<frc::JoystickButton> m_CargoInBtn;
   std::unique_ptr<frc::JoystickButton> m_QuickStopBtn;
+  std::unique_ptr<frc::JoystickButton> m_AimToTarget;
 };

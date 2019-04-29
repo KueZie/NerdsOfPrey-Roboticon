@@ -14,7 +14,7 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain")
   // m_BackLeftMotorSlave.reset(    new VictorSPX(constants::drivetrain::left::BACK_MOTOR_ID ) );
   // m_BackRightMotorSlave.reset(   new VictorSPX(constants::drivetrain::right::BACK_MOTOR_ID) );
 
-  m_AHRS.reset( new AHRS(SPI::Port::kMXP) );
+  //m_AHRS.reset( new AHRS(SPI::Port::kMXP) );
 
   /*m_FrontLeftMotorMaster-> ConfigFactoryDefault();
   m_FrontRightMotorMaster->ConfigFactoryDefault();
@@ -207,7 +207,7 @@ void Drivetrain::ResetEncoderPositions()
 
 void Drivetrain::ResetGyro()
 {
-  m_AHRS->ZeroYaw();
+  //m_AHRS->ZeroYaw();
 }
 
 void Drivetrain::ResetSensors()
@@ -218,7 +218,8 @@ void Drivetrain::ResetSensors()
 
 float Drivetrain::GetYaw()
 {
-  return m_AHRS->GetYaw();
+  //return m_AHRS->GetYaw();
+  return 0.0f;
 }
 
 float Drivetrain::GetRightEncoderPosition()

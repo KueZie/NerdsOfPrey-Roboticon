@@ -7,15 +7,16 @@ namespace constants
     constexpr int TIMEOUT_MS = 10;
     namespace controls
     {
-        constexpr int CONTROLLER_ID       = 0;
-        constexpr int BUTTON_BOX_ID       = 1;
-        constexpr int THROTTLE_AXIS_ID    = 0;
-        constexpr int ROTATION_AXIS_ID    = 1;
-        constexpr int HATCH_SLIDER_BTN_ID = 0;
-        constexpr int HATCH_BTN_ID        = 0;
-        constexpr int CARGO_IN_BTN_ID     = 0;
-        constexpr int CARGO_OUT_BTN_ID    = 0;
-        constexpr int QUICK_STOP_BTN_ID   = 1;
+        constexpr int CONTROLLER_ID        = 0;
+        constexpr int BUTTON_BOX_ID        = 1;
+        constexpr int THROTTLE_AXIS_ID     = 0;
+        constexpr int ROTATION_AXIS_ID     = 1;
+        constexpr int HATCH_SLIDER_BTN_ID  = 0;
+        constexpr int HATCH_BTN_ID         = 0;
+        constexpr int CARGO_IN_BTN_ID      = 0;
+        constexpr int CARGO_OUT_BTN_ID     = 0;
+        constexpr int QUICK_STOP_BTN_ID    = 1;
+        constexpr int AIM_TO_TARGET_BTN_ID = 2;                                      
     }
     namespace drivetrain
     {
@@ -61,11 +62,29 @@ namespace constants
         constexpr float VISION_TARGET_HEIGHT = 0.0f;
         namespace limelight
         {
+            constexpr float MAXIMUM_OFFSET_ERROR  = 0.5f;
             constexpr float MOUNTING_ANGLE        = 0.0f;
             constexpr float DISTANCE_FROM_FLOOR   = 0.0f;
             constexpr float DISTANCE_FROM_BUMPERS = 0.0f;
             const     float HORIZONTAL_FOV        = 1.0402162341886205f;
             const     float VERTICAL_FOV          = 0.7976154681614086f;
+            namespace steering
+            {
+                namespace throttle
+                {
+                    constexpr float kF = 0.0f;
+                    constexpr float kP = 0.0f;
+                    constexpr float kI = 0.0f;
+                    constexpr float kD = 0.0f;
+                }
+                namespace turning
+                {
+                    constexpr float kF = 0.0f;
+                    constexpr float kP = 0.0f;
+                    constexpr float kI = 0.0f;
+                    constexpr float kD = 0.0f;
+                }
+            }
         }
     }
 }

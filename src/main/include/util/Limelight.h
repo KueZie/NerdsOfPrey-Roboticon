@@ -15,8 +15,10 @@ public:
     enum class LED_MODE { PIPELINE, OFF, BLINK, ON };
     enum class CAM_MODE { VISION_PROCESSING, DRIVE_CAMERA };
     Limelight(std::string name);
+    Limelight() {}
     ~Limelight() {}
     bool HasTarget();
+    bool IsConnected();
     void SetLEDs(LED_MODE mode);
     void SetPipeline(int slot);
     void SetCam(CAM_MODE mode);
