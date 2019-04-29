@@ -207,7 +207,7 @@ void Drivetrain::ResetEncoderPositions()
 
 void Drivetrain::ResetGyro()
 {
-  //m_AHRS->ZeroYaw();
+  m_AHRS->ZeroYaw();
 }
 
 void Drivetrain::ResetSensors()
@@ -218,7 +218,7 @@ void Drivetrain::ResetSensors()
 
 float Drivetrain::GetYaw()
 {
-  //return m_AHRS->GetYaw();
+  return m_AHRS->GetYaw();
   return 0.0f;
 }
 
