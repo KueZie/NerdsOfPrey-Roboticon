@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 #pragma once
 
 #include <frc/commands/Subsystem.h>
@@ -13,8 +6,8 @@
 #include <memory>
 #include "Constants.h"
 #include "util/Functions.h"
-#include "commands/ArcadeDrive.h"
-#include "commands/CurvatureDrive.h"
+#include "commands/drivetrain/ArcadeDrive.h"
+#include "commands/drivetrain/CurvatureDrive.h"
 #include <iostream>
 
 // TODOS
@@ -33,7 +26,7 @@ private:
   std::unique_ptr<VictorSPX> m_BackRightMotorSlave;
 
   // Curvature drive variables
-  double m_QuickStopAccumulator, m_OldWheel;
+  double m_QuickStopAccumulator, m_OldWheel, m_IsQuickTurn;
 
   // Gyro
   std::unique_ptr<AHRS> m_AHRS;
@@ -51,6 +44,8 @@ public:
   void ResetEncoderPositions();
   void ResetGyro();
   void ResetSensors();
+  void SetQuickTurn(bool quickTurn);
+  bool IsQuickTurn();
   float GetYaw();
   float GetLeftEncoderPosition();
   float GetRightEncoderPosition();

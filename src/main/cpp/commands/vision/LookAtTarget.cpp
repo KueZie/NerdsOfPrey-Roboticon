@@ -5,24 +5,37 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/ArmCargoShipPosition.h"
+#include "commands/vision/LookAtTarget.h"
 
-ArmCargoShipPosition::ArmCargoShipPosition() {
-  Requires(Arm::GetInstance());
+LookAtTarget::LookAtTarget() {
+  Requires(Drivetrain::GetInstance());
+  Requires(Vision::GetInstance());
 }
 
 // Called just before this Command runs the first time
-void ArmCargoShipPosition::Initialize() {}
+void LookAtTarget::Initialize() 
+{}
 
 // Called repeatedly when this Command is scheduled to run
-void ArmCargoShipPosition::Execute() {}
+void LookAtTarget::Execute()
+{
+  using namespace constants::vision::limelight;
+  m_CurrentError = Vision::GetInstance()->GetLimelight()->GetHorizontalOffsetFromTarget();
+  double turnPower = m_CurrentError * steering::turning::kP;
+  Drivetrain::GetInstance()->Arcade(0.0f, turnPower);
+}
 
 // Make this return true when this Command no longer needs to run execute()
-bool ArmCargoShipPosition::IsFinished() { return false; }
+bool LookAtTarget::IsFinished()
+{
+  if (m_CurrentError < constants::vision::limelight::MAXIMUM_OFFSET_ERROR)
+    return true;
+  return false;
+}
 
 // Called once after isFinished returns true
-void ArmCargoShipPosition::End() {}
+void LookAtTarget::End() {}
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void ArmCargoShipPosition::Interrupted() {}
+void LookAtTarget::Interrupted() {}

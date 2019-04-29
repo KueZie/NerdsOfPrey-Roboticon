@@ -6,3 +6,4 @@
 #include "Drivetrain.h"
 #include "Hatch.h"
 #include "HatchSlider.h"
+#include "Vision.h"

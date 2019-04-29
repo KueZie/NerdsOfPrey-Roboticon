@@ -5,13 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#include "commands/ReleaseHatch.h"
+#pragma once
 
-ReleaseHatch::ReleaseHatch() {
-  Requires(Hatch::GetInstance());
-}
+#include <frc/commands/Command.h>
+#include "subsystems/Drivetrain.h"
+#include "subsystems/Vision.h"
+#include "Constants.h"
 
-void ReleaseHatch::Initialize()
-{
-  Hatch::GetInstance()->Release();
-}
+class LookAtTarget : public frc::Command {
+ public:
+  LookAtTarget();
+  void Initialize() override;
+  void Execute() override;
+  bool IsFinished() override;
+  void End() override;
+  void Interrupted() override;
+private:
+  double m_CurrentError;
+};
