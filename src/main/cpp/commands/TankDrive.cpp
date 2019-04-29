@@ -14,5 +14,6 @@ TankDrive::TankDrive() {
 // Called once when the command executes
 void TankDrive::Initialize()
 {
-  Drivetrain::GetInstance()->Tank(OI::GetInstance()->m_Controller->GetRawAxis(1), OI::GetInstance()->m_Controller->GetRawAxis(5));
+  Drivetrain::GetInstance()->Tank(OI::GetInstance()->m_Controller->GetRawAxis(1),
+                                  OI::GetInstance()->m_Controller->GetRawAxis(5));
 }

@@ -18,7 +18,8 @@ void ArcadeDrive::Initialize()
 void ArcadeDrive::Execute()
 {
   std::cout << "Arcade running...\n";
-  Drivetrain::GetInstance()->Arcade(OI::GetInstance()->m_Controller->GetRawAxis(1), OI::GetInstance()->m_Controller->GetRawAxis(4));
+  Drivetrain::GetInstance()->Arcade(OI::GetInstance()->m_Controller->GetRawAxis(1),
+                                    OI::GetInstance()->m_Controller->GetRawAxis(4));
 }
 
 bool ArcadeDrive::IsFinished()
