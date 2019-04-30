@@ -13,7 +13,8 @@
 // TODOS
 // Implement current and voltage draw method
 
-class Drivetrain : public frc::Subsystem {
+class Drivetrain : public frc::Subsystem
+{
 private:
   // Master controllers
   std::unique_ptr<WPI_TalonSRX>  m_FrontLeftMotorMaster;

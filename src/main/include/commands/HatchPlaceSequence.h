@@ -13,7 +13,8 @@
 #include "subsystems/HatchSlider.h"
 #include "commands/ActuatePneumatic.h"
 
-class HatchPlaceSequence : public frc::CommandGroup {
- public:
+class HatchPlaceSequence : public frc::CommandGroup
+{
+public:
   HatchPlaceSequence();
 };

@@ -1,6 +1,7 @@
 #include "commands/arm/ArmDefaultPosition.h"
 
-ArmDefaultPosition::ArmDefaultPosition() {
+ArmDefaultPosition::ArmDefaultPosition()
+{
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
 }

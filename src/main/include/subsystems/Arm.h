@@ -8,7 +8,8 @@
 
 using DigitalInput = frc::DigitalInput;
 
-class Arm : public frc::Subsystem {
+class Arm : public frc::Subsystem
+{
 private:
   float m_Angle;
   int m_EncoderPosition;

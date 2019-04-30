@@ -1,6 +1,7 @@
 #include "commands/cargo/CargoIn.h"
 
-CargoIn::CargoIn() {
+CargoIn::CargoIn()
+{
   Requires(Cargo::GetInstance());
 }
 

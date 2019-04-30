@@ -9,7 +9,8 @@
 
 #include <frc/commands/Command.h>
 
-class FollowTrajectory : public frc::Command {
+class FollowTrajectory : public frc::Command
+{
 public:
   FollowTrajectory();
   void Initialize() override;

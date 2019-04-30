@@ -1,6 +1,7 @@
 #include "commands/drivetrain/TankDrive.h"
 
-TankDrive::TankDrive() {
+TankDrive::TankDrive()
+{
   Requires(Drivetrain::GetInstance());
 }
 

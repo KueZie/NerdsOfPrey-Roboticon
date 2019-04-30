@@ -14,7 +14,8 @@
 #include "commands/ActuatePneumatic.h"
 #include "util/SimplePneumaticSystem.h"
 
-class HatchGrabSequence : public frc::CommandGroup {
- public:
+class HatchGrabSequence : public frc::CommandGroup
+{
+public:
   HatchGrabSequence();
 };

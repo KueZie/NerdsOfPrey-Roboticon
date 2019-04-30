@@ -10,7 +10,8 @@
 #include <frc/commands/Command.h>
 #include "subsystems/Arm.h"
 
-class ArmCargoShipPosition : public frc::Command {
+class ArmCargoShipPosition : public frc::Command
+{
 public:
   ArmCargoShipPosition();
   void Initialize() override;

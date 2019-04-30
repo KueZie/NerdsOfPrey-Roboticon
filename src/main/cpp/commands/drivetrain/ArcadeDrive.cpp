@@ -1,6 +1,7 @@
 #include "commands/drivetrain/ArcadeDrive.h"
 
-ArcadeDrive::ArcadeDrive() {
+ArcadeDrive::ArcadeDrive()
+{
   Requires(Drivetrain::GetInstance());
 }
 

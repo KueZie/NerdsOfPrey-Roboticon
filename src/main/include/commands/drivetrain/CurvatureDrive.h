@@ -10,8 +10,9 @@
 #include <frc/commands/Command.h>
 #include <subsystems/Drivetrain.h>
 
-class CurvatureDrive : public frc::Command {
- public:
+class CurvatureDrive : public frc::Command
+{
+public:
   CurvatureDrive();
   void Initialize() override;
   void Execute() override;

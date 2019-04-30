@@ -1,6 +1,7 @@
 #include "commands/arm/ArmCargoShipPosition.h"
 
-ArmCargoShipPosition::ArmCargoShipPosition() {
+ArmCargoShipPosition::ArmCargoShipPosition()
+{
   Requires(Arm::GetInstance());
 }
 

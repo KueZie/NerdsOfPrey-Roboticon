@@ -5,7 +5,8 @@
 #include "Constants.h"
 #include "commands/cargo/CargoOff.h"
 
-class Cargo : public frc::Subsystem {
+class Cargo : public frc::Subsystem
+{
 private:
   std::unique_ptr<WPI_VictorSPX> m_Intake;
   static Cargo* m_Instance;

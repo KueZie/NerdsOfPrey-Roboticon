@@ -1,6 +1,7 @@
 #include "commands/vision/LookAtTarget.h"
 
-LookAtTarget::LookAtTarget() {
+LookAtTarget::LookAtTarget()
+{
   Requires(Drivetrain::GetInstance());
   Requires(Vision::GetInstance());
 }

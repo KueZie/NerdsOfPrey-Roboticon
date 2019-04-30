@@ -1,6 +1,7 @@
 #include "commands/arm/ArmRocketPosition.h"
 
-ArmRocketPosition::ArmRocketPosition() {
+ArmRocketPosition::ArmRocketPosition()
+{
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
 }

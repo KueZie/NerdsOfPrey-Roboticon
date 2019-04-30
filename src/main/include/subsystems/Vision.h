@@ -4,7 +4,8 @@
 #include <memory>
 #include "util/Limelight.h"
 
-class Vision : public frc::Subsystem {
+class Vision : public frc::Subsystem
+{
 private:
   std::shared_ptr<Limelight> m_Limelight;
   static Vision* m_Instance;
