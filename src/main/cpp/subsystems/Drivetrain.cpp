@@ -5,14 +5,14 @@ Drivetrain* Drivetrain::m_Instance = nullptr;
 Drivetrain::Drivetrain() : Subsystem("Drivetrain")
 {
   // Setup controllers
-  m_FrontLeftMotorMaster.reset(  new TalonSRX(constants::drivetrain::left::FRONT_MOTOR_ID) );
-  m_FrontRightMotorMaster.reset( new TalonSRX(constants::drivetrain::right::FRONT_MOTOR_ID) );
+  m_FrontLeftMotorMaster.reset(  new WPI_TalonSRX(1) );
+  m_FrontRightMotorMaster.reset( new WPI_TalonSRX(2) );
 
-  // m_MiddleLeftMotorSlave.reset(  new VictorSPX(constants::drivetrain::left::MIDDLE_MOTOR_ID ) );
-  // m_MiddleRightMotorSlave.reset( new VictorSPX(constants::drivetrain::right::MIDDLE_MOTOR_ID) );
+  // m_MiddleLeftMotorSlave.reset(  new WPI_VictorSPX(constants::drivetrain::left::MIDDLE_MOTOR_ID ) );
+  // m_MiddleRightMotorSlave.reset( new WPI_VictorSPX(constants::drivetrain::right::MIDDLE_MOTOR_ID) );
 
-  // m_BackLeftMotorSlave.reset(    new VictorSPX(constants::drivetrain::left::BACK_MOTOR_ID ) );
-  // m_BackRightMotorSlave.reset(   new VictorSPX(constants::drivetrain::right::BACK_MOTOR_ID) );
+  // m_BackLeftMotorSlave.reset(    new WPI_VictorSPX(constants::drivetrain::left::BACK_MOTOR_ID ) );
+  // m_BackRightMotorSlave.reset(   new WPI_VictorSPX(constants::drivetrain::right::BACK_MOTOR_ID) );
 
   //m_AHRS.reset( new AHRS(SPI::Port::kMXP) );
 

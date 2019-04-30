@@ -11,7 +11,8 @@
 #include "subsystems/Drivetrain.h"
 #include "OI.h"
 
-class TankDrive : public frc::InstantCommand {
+class TankDrive : public frc::InstantCommand
+{
  public:
   TankDrive();
   void Initialize() override;

@@ -10,7 +10,8 @@
 #include <frc/commands/InstantCommand.h>
 #include "subsystems/Cargo.h"
 
-class CargoOut : public frc::InstantCommand {
+class CargoOut : public frc::InstantCommand
+{
  public:
   CargoOut();
   void Initialize() override;

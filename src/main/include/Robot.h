@@ -26,6 +26,7 @@ private:
   frc::Command* m_autonomousCommand = nullptr;
   frc::SendableChooser<frc::Command*> m_chooser;
 
+  static Vision*                 m_VisionSubsystem;
   static Arm*                    m_ArmSubsystem;
   static Cargo*                  m_CargoSubsystem;
   static Hatch*                  m_HatchSubsystem;

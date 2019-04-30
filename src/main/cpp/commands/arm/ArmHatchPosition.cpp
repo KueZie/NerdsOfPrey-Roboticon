@@ -1,6 +1,7 @@
 #include "commands/arm/ArmHatchPosition.h"
 
-ArmHatchPosition::ArmHatchPosition() {
+ArmHatchPosition::ArmHatchPosition()
+{
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
 }

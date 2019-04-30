@@ -1,6 +1,7 @@
 #include "commands/ToggleQuickStop.h"
 
-ToggleQuickStop::ToggleQuickStop() {
+ToggleQuickStop::ToggleQuickStop()
+{
   // Use Requires() here to declare subsystem dependencies
   Requires(Drivetrain::GetInstance());
 }

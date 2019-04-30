@@ -1,6 +1,7 @@
 #include "commands/cargo/CargoOut.h"
 
-CargoOut::CargoOut() {
+CargoOut::CargoOut()
+{
   Requires(Cargo::GetInstance());
 }
 

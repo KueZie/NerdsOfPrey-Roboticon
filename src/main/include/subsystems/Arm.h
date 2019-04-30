@@ -8,12 +8,13 @@
 
 using DigitalInput = frc::DigitalInput;
 
-class Arm : public frc::Subsystem {
+class Arm : public frc::Subsystem
+{
 private:
   float m_Angle;
   int m_EncoderPosition;
-  std::unique_ptr<TalonSRX> m_LeftMotorMaster;
-  std::unique_ptr<VictorSPX> m_RightMotorSlave;
+  std::unique_ptr<WPI_TalonSRX> m_LeftMotorMaster;
+  std::unique_ptr<WPI_VictorSPX> m_RightMotorSlave;
   std::unique_ptr<DigitalInput> m_ZeroingLimitSwitch;
   static Arm* m_Instance;
   Arm();

@@ -1,6 +1,7 @@
 #include "commands/cargo/CargoOff.h"
 
-CargoOff::CargoOff() {
+CargoOff::CargoOff()
+{
   Requires(Cargo::GetInstance());
 }
 

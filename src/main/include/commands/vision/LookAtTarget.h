@@ -12,7 +12,8 @@
 #include "subsystems/Vision.h"
 #include "Constants.h"
 
-class LookAtTarget : public frc::Command {
+class LookAtTarget : public frc::Command
+{
  public:
   LookAtTarget();
   void Initialize() override;

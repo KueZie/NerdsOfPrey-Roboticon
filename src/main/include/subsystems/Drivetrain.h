@@ -13,17 +13,18 @@
 // TODOS
 // Implement current and voltage draw method
 
-class Drivetrain : public frc::Subsystem {
+class Drivetrain : public frc::Subsystem
+{
 private:
   // Master controllers
-  std::unique_ptr<TalonSRX>  m_FrontLeftMotorMaster;
-  std::unique_ptr<TalonSRX>  m_FrontRightMotorMaster;
+  std::unique_ptr<WPI_TalonSRX>  m_FrontLeftMotorMaster;
+  std::unique_ptr<WPI_TalonSRX>  m_FrontRightMotorMaster;
   // Slave controllers
-  std::unique_ptr<VictorSPX> m_MiddleLeftMotorSlave;
-  std::unique_ptr<VictorSPX> m_MiddleRightMotorSlave;
-
-  std::unique_ptr<VictorSPX> m_BackLeftMotorSlave;
-  std::unique_ptr<VictorSPX> m_BackRightMotorSlave;
+  std::unique_ptr<WPI_VictorSPX> m_MiddleLeftMotorSlave;
+  std::unique_ptr<WPI_VictorSPX> m_MiddleRightMotorSlave;
+  
+  std::unique_ptr<WPI_VictorSPX> m_BackLeftMotorSlave;
+  std::unique_ptr<WPI_VictorSPX> m_BackRightMotorSlave;
 
   // Curvature drive variables
   double m_QuickStopAccumulator, m_OldWheel, m_IsQuickTurn;

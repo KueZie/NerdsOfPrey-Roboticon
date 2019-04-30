@@ -9,7 +9,8 @@
 
 #include <frc/commands/Command.h>
 
-class ArmHatchPosition : public frc::Command {
+class ArmHatchPosition : public frc::Command
+{
 public:
   ArmHatchPosition();
   void Initialize() override;

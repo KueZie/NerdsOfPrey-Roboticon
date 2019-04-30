@@ -9,7 +9,8 @@
 
 #include <frc/commands/Command.h>
 
-class ArmRocketPosition : public frc::Command {
+class ArmRocketPosition : public frc::Command
+{
 public:
   ArmRocketPosition();
   void Initialize() override;

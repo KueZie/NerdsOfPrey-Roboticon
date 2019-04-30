@@ -5,13 +5,7 @@
 #include "arm/ArmHatchPosition.h"
 #include "arm/ArmRocketPosition.h"
 
-#include "hatchslider/ExtendHatchSlider.h"
-#include "hatchslider/RetractHatchSlider.h"
-#include "hatchslider/ToggleHatchSlider.h"
-
-#include "hatch/GrabHatch.h"
-#include "hatch/ReleaseHatch.h"
-#include "hatch/ToggleHatch.h"
+#include "ActuatePneumatic.h"
 
 #include "cargo/CargoIn.h"
 #include "cargo/CargoOut.h"

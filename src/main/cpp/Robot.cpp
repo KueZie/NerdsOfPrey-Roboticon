@@ -10,6 +10,7 @@
 #include <frc/commands/Scheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
+Vision*                 Robot::m_VisionSubsystem;
 Arm*                    Robot::m_ArmSubsystem;
 Cargo*                  Robot::m_CargoSubsystem;
 Hatch*                  Robot::m_HatchSubsystem;
@@ -21,6 +22,7 @@ PowerDistributionPanel* Robot::m_PDP;
 
 void Robot::RobotInit() {
   frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
+  m_VisionSubsystem = Vision::GetInstance();
   m_ArmSubsystem = Arm::GetInstance();
   m_CargoSubsystem = Cargo::GetInstance();
   m_HatchSubsystem = Hatch::GetInstance();
@@ -47,6 +49,7 @@ void Robot::RobotPeriodic()
   frc::SmartDashboard::PutNumber("L Drive POut.", m_DrivetrainSubsystem->GetLeftPercentOutput());
   frc::SmartDashboard::PutString("HatchSlider", m_HatchSliderSubsystem->IsExtended() ? "Extended" : "Stowed");
   frc::SmartDashboard::PutString("HatchSystem", m_HatchSubsystem->IsGrabbing() ? "Grabbing" : "Not Grabbing");
+  frc::SmartDashboard::PutString("Limelight", m_VisionSubsystem->GetLimelight()->IsConnected() ? "Connected" : "Not Connected");
 }
 
 /**

@@ -16,31 +16,18 @@ HatchSlider* HatchSlider::GetInstance()
   return m_Instance;
 }
 
-void HatchSlider::Out()
+void HatchSlider::Set(State state)
 {
-  m_DSolenoid->Set(frc::DoubleSolenoid::Value::kForward);
-  m_IsOut = true;
+  m_DSolenoid->Set(static_cast<frc::DoubleSolenoid::Value>(state));
+  m_State = state;
 }
 
-void HatchSlider::In()
+HatchSlider::State HatchSlider::GetState()
 {
-  m_DSolenoid->Set(frc::DoubleSolenoid::Value::kReverse);
-  m_IsOut = false;
-}
-
-void HatchSlider::Toggle()
-{
-  m_IsOut = !m_IsOut;
-  if (m_IsOut) Out();
-  else In();
-}
-
-void HatchSlider::Off()
-{
-  m_DSolenoid->Set(frc::DoubleSolenoid::Value::kOff);
+  return m_State;
 }
 
 bool HatchSlider::IsExtended()
 {
-  return m_IsOut;
+  return m_State == State::FORWARD;
 }

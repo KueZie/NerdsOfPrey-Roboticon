@@ -1,6 +1,7 @@
 #include "commands/drivetrain/FollowTrajectory.h"
 
-FollowTrajectory::FollowTrajectory() {
+FollowTrajectory::FollowTrajectory()
+{
   // Use Requires() here to declare subsystem dependencies
   // eg. Requires(Robot::chassis.get());
 }

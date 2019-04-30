@@ -16,31 +16,18 @@ Hatch* Hatch::GetInstance()
   return m_Instance;
 }
 
-void Hatch::Grab()
+void Hatch::Set(State state)
 {
-  m_DSolenoid->Set(frc::DoubleSolenoid::Value::kForward);
-  m_IsGrabbing = true;
+  m_DSolenoid->Set(static_cast<frc::DoubleSolenoid::Value>(state));
+  m_State = state;
 }
 
-void Hatch::Release()
+Hatch::State Hatch::GetState()
 {
-  m_DSolenoid->Set(frc::DoubleSolenoid::Value::kReverse);
-  m_IsGrabbing = false;
-}
-
-void Hatch::Toggle()
-{
-  m_IsGrabbing = !m_IsGrabbing;
-  if (m_IsGrabbing) Grab();
-  else Release();
-}
-
-void Hatch::Off()
-{
-  m_DSolenoid->Set(frc::DoubleSolenoid::Value::kOff);
+  return m_State;
 }
 
 bool Hatch::IsGrabbing()
 {
-  return m_IsGrabbing;
+  return m_State == State::FORWARD;
 }

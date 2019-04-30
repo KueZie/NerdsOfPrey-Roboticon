@@ -9,11 +9,12 @@
 
 #include <frc/commands/CommandGroup.h>
 #include <frc/WPILib.h>
-#include "commands/hatchslider/ExtendHatchSlider.h"
-#include "commands/hatchslider/ToggleHatchSlider.h"
-#include "commands/hatch/ReleaseHatch.h"
+#include "subsystems/Hatch.h"
+#include "subsystems/HatchSlider.h"
+#include "commands/ActuatePneumatic.h"
 
-class HatchPlaceSequence : public frc::CommandGroup {
- public:
+class HatchPlaceSequence : public frc::CommandGroup
+{
+public:
   HatchPlaceSequence();
 };

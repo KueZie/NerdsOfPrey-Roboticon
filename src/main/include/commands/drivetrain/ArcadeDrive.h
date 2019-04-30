@@ -12,7 +12,8 @@
 #include "OI.h"
 #include <iostream>
 
-class ArcadeDrive : public frc::Command {
+class ArcadeDrive : public frc::Command
+{
  public:
   ArcadeDrive();
   void Initialize() override;

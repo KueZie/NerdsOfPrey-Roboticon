@@ -10,6 +10,11 @@ bool Limelight::HasTarget()
     return static_cast<bool>(m_LimelightTable->GetNumber("tv", 0.0f));
 }
 
+bool Limelight::IsConnected()
+{
+    return m_LimelightTable->GetNumber("tl", 0.0f) != 0.0f;
+}
+
 void Limelight::SetLEDs(LED_MODE mode)
 {
     m_LimelightTable->PutNumber("ledMode", static_cast<int>(mode));
@@ -21,7 +26,7 @@ void Limelight::SetPipeline(int slot)
         m_LimelightTable->PutNumber("pipeline", slot);
 }
 
-void Limelight::SetCam(CAM_MODE mode)
+void Limelight::SetCam(CAM_MODE   mode)
 {
     m_LimelightTable->PutNumber("camMode", static_cast<int>(mode));
 }
