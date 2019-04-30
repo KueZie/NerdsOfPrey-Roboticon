@@ -4,7 +4,7 @@ Cargo* Cargo::m_Instance = nullptr;
 
 Cargo::Cargo() : Subsystem("Cargo")
 {
-  m_Intake.reset( new VictorSPX(constants::cargo_intake::MOTOR_ID) );
+  m_Intake.reset( new WPI_VictorSPX(constants::cargo_intake::MOTOR_ID) );
   m_Intake->SetInverted(InvertType::None);
 }
 

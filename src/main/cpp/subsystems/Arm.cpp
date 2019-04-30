@@ -4,8 +4,8 @@ Arm* Arm::m_Instance = nullptr;
 
 Arm::Arm() : Subsystem("Arm")
 {
-  m_LeftMotorMaster.reset( new TalonSRX(constants::arm::LEFT_MOTOR_ID) );
-  m_RightMotorSlave.reset( new VictorSPX(constants::arm::RIGHT_MOTOR_ID) );
+  m_LeftMotorMaster.reset( new WPI_TalonSRX(constants::arm::LEFT_MOTOR_ID) );
+  m_RightMotorSlave.reset( new WPI_VictorSPX(constants::arm::RIGHT_MOTOR_ID) );
 
   m_LeftMotorMaster->ConfigFactoryDefault();
   m_RightMotorSlave->ConfigFactoryDefault();
@@ -54,10 +54,11 @@ void Arm::ResetEncoderPosition()
 
 void Arm::SetAngle(double angle)
 {
-  // m_LeftMotorMaster->Set(ControlMode::MotionMagic, angl);
+  m_LeftMotorMaster->Set(ControlMode::MotionMagic, angle / constants::arm::ANGLE_CONVERSION_FACTOR);
 }
 
 float Arm::GetAngle()
 {
+  // Convert from native ticks to degrees
   return GetEncoderPosition() * constants::arm::ANGLE_CONVERSION_FACTOR;
 }

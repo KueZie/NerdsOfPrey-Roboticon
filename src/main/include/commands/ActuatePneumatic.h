@@ -8,10 +8,14 @@
 #pragma once
 
 #include <frc/commands/InstantCommand.h>
-#include "subsystems/HatchSlider.h"
+#include "util/SimplePneumaticSystem.h"
 
-class RetractHatchSlider : public frc::InstantCommand {
+class ActuatePneumatic : public frc::InstantCommand
+{
 public:
-  RetractHatchSlider();
+  ActuatePneumatic(frc::Subsystem* subsystem, SimplePneumaticSystem::State state);
   void Initialize() override;
+private:
+  SimplePneumaticSystem* m_PneumaticsSystem;
+  SimplePneumaticSystem::State m_State;
 };

@@ -5,13 +5,16 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-#pragma once
+#include "commands/ActuatePneumatic.h"
 
-#include <frc/commands/InstantCommand.h>
-#include "subsystems/Hatch.h"
+ActuatePneumatic::ActuatePneumatic(frc::Subsystem* subsystem, SimplePneumaticSystem::State state)
+  : m_State(state)
+{
+  Requires(subsystem);
+  m_PneumaticsSystem = reinterpret_cast<SimplePneumaticSystem*>(subsystem);
+}
 
-class GrabHatch : public frc::InstantCommand {
-public:
-  GrabHatch();
-  void Initialize() override;
-};
+void ActuatePneumatic::Initialize()
+{
+  m_PneumaticsSystem->Set(m_State);
+}

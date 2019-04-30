@@ -4,20 +4,20 @@
 #include <frc/WPILib.h>
 #include <memory>
 #include "Constants.h"
+#include "util/SimplePneumaticSystem.h"
 
-class HatchSlider : public frc::Subsystem {
+class HatchSlider : public frc::Subsystem, public SimplePneumaticSystem
+{
 private:
   std::unique_ptr<frc::DoubleSolenoid> m_DSolenoid;
-  bool m_IsOut = false;
+  State m_State;
 
   static HatchSlider* m_Instance;
   HatchSlider();
 public:
   static HatchSlider* GetInstance();
   ~HatchSlider() { delete m_Instance; }
-  void Out();
-  void In();
-  void Toggle();
-  void Off();
+  virtual void Set(State state) override;
+  virtual State GetState() override;
   bool IsExtended();
 };

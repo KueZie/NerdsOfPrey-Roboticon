@@ -13,4 +13,4 @@ struct Transform2D
     Transform2D operator-(const Transform2D& other);
     void operator+=(const Transform2D& other);
     void operator-=(const Transform2D& other);
-}
+};

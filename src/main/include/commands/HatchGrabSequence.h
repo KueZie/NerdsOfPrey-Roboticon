@@ -9,9 +9,10 @@
 
 #include <frc/commands/CommandGroup.h>
 #include <frc/WPILib.h>
-#include "commands/hatch/GrabHatch.h"
-#include "commands/hatchslider/ToggleHatchSlider.h"
-#include "commands/hatchslider/ExtendHatchSlider.h"
+#include "subsystems/Hatch.h"
+#include "subsystems/HatchSlider.h"
+#include "commands/ActuatePneumatic.h"
+#include "util/SimplePneumaticSystem.h"
 
 class HatchGrabSequence : public frc::CommandGroup {
  public:

@@ -1,9 +1,11 @@
 #include "commands/HatchGrabSequence.h"
 
-HatchGrabSequence::HatchGrabSequence() {
-  AddSequential(new ExtendHatchSlider());
+HatchGrabSequence::HatchGrabSequence()
+{
+  using State = SimplePneumaticSystem::State;
+  AddSequential(new ActuatePneumatic(HatchSlider::GetInstance(), State::FORWARD));
   AddSequential(new frc::WaitCommand(0.2));
-  AddSequential(new GrabHatch());
+  AddSequential(new ActuatePneumatic(Hatch::GetInstance(), State::FORWARD));
   AddSequential(new frc::WaitCommand(0.2));
-  AddSequential(new ToggleHatchSlider());
+  AddSequential(new ActuatePneumatic(HatchSlider::GetInstance(), State::REVERSE));
 }
