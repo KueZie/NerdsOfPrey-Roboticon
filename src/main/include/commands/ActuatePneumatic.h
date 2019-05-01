@@ -1,14 +1,14 @@
 #pragma once
 
 #include <frc/commands/InstantCommand.h>
-#include "util/SimplePneumaticSystem.h"
+#include "util/SimplePneumaticSubsystem.h"
 
 class ActuatePneumatic : public frc::InstantCommand
 {
 public:
-  ActuatePneumatic(frc::Subsystem* subsystem, SimplePneumaticSystem::State state);
+  ActuatePneumatic(SimplePneumaticSubsystem* subsystem, SimplePneumaticSubsystem::State state);
   void Initialize() override;
 private:
-  SimplePneumaticSystem* m_PneumaticsSystem;
-  SimplePneumaticSystem::State m_State;
+  SimplePneumaticSubsystem* m_PneumaticsSystem;
+  SimplePneumaticSubsystem::State m_State;
 };

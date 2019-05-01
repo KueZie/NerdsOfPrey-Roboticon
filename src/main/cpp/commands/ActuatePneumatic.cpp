@@ -1,10 +1,9 @@
 #include "commands/ActuatePneumatic.h"
 
-ActuatePneumatic::ActuatePneumatic(frc::Subsystem* subsystem, SimplePneumaticSystem::State state)
-  : m_State(state)
+ActuatePneumatic::ActuatePneumatic(SimplePneumaticSubsystem* subsystem, SimplePneumaticSubsystem::State state)
+  : m_State(state), m_PneumaticsSystem(subsystem)
 {
-  Requires(subsystem);
-  m_PneumaticsSystem = reinterpret_cast<SimplePneumaticSystem*>(subsystem);
+  Requires(static_cast<frc::Subsystem*>(subsystem));
 }
 
 void ActuatePneumatic::Initialize()

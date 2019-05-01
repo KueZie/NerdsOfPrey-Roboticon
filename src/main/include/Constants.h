@@ -45,11 +45,11 @@ namespace constants
     }
     namespace hatch_intake
     {
-        constexpr int SOLENOID_IDS[] = {0, 0};
+        constexpr int SOLENOID_IDS[] = {0, 1};
     }
     namespace hatch_slider
     {
-        constexpr int SOLENOID_IDS[] = {0, 0};
+        constexpr int SOLENOID_IDS[] = {2, 3};
     }
     namespace cargo_intake
     {

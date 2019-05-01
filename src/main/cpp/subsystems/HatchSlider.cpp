@@ -2,9 +2,10 @@
 
 HatchSlider* HatchSlider::m_Instance = nullptr;
 
-HatchSlider::HatchSlider() : Subsystem("ExampleSubsystem")
+HatchSlider::HatchSlider()
+  : SimplePneumaticSubsystem("HatchSlider")
 {
-  m_DSolenoid.reset( new frc::DoubleSolenoid(constants::hatch_slider::SOLENOID_IDS[0], constants::hatch_slider::SOLENOID_IDS[1]) );
+  // m_DSolenoid.reset( new frc::DoubleSolenoid(constants::hatch_slider::SOLENOID_IDS[0], constants::hatch_slider::SOLENOID_IDS[1]) );
   // Start retracted
   m_DSolenoid->Set(frc::DoubleSolenoid::Value::kReverse);
 }

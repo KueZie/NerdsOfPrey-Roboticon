@@ -4,9 +4,9 @@
 #include <frc/WPILib.h>
 #include <memory>
 #include "Constants.h"
-#include "util/SimplePneumaticSystem.h"
+#include "util/SimplePneumaticSubsystem.h"
 
-class Hatch : public frc::Subsystem, public SimplePneumaticSystem
+class Hatch : public SimplePneumaticSubsystem
 {
 private:
   std::unique_ptr<frc::DoubleSolenoid> m_DSolenoid;

@@ -21,16 +21,23 @@ OI*                     Robot::m_OI;
 PowerDistributionPanel* Robot::m_PDP;
 
 void Robot::RobotInit() {
-  frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
-  m_VisionSubsystem = Vision::GetInstance();
-  m_ArmSubsystem = Arm::GetInstance();
-  m_CargoSubsystem = Cargo::GetInstance();
-  m_HatchSubsystem = Hatch::GetInstance();
-  m_HatchSliderSubsystem = HatchSlider::GetInstance();
-  m_DrivetrainSubsystem = Drivetrain::GetInstance();
-  m_ClimberSubsystem = Climber::GetInstance();
-  m_OI = OI::GetInstance();
-  m_PDP = new PowerDistributionPanel(0);
+  try
+  {
+    frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
+    m_VisionSubsystem = Vision::GetInstance();
+    m_ArmSubsystem = Arm::GetInstance();
+    m_CargoSubsystem = Cargo::GetInstance();
+    // m_HatchSubsystem = Hatch::GetInstance();
+    // m_HatchSliderSubsystem = HatchSlider::GetInstance();
+    m_DrivetrainSubsystem = Drivetrain::GetInstance();
+    m_ClimberSubsystem = Climber::GetInstance();
+    m_OI = OI::GetInstance();
+    m_PDP = new PowerDistributionPanel(0);
+  }
+  catch(const std::exception& e)
+  {
+    std::cout << e.what() << std::endl;
+  }
 }
 
 /**

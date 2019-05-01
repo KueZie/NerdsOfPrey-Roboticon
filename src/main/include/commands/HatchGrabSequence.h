@@ -12,7 +12,7 @@
 #include "subsystems/Hatch.h"
 #include "subsystems/HatchSlider.h"
 #include "commands/ActuatePneumatic.h"
-#include "util/SimplePneumaticSystem.h"
+#include "util/SimplePneumaticSubsystem.h"
 
 class HatchGrabSequence : public frc::CommandGroup
 {

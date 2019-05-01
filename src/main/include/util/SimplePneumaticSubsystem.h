@@ -2,11 +2,13 @@
 
 #include <frc/WPILib.h>
 
-class SimplePneumaticSystem
+class SimplePneumaticSubsystem : public frc::Subsystem
 {
 public:
     enum class State { OFF, FORWARD, REVERSE };
-    SimplePneumaticSystem() {}
+    SimplePneumaticSubsystem(const char* name)
+        : Subsystem(name)
+    {}
     virtual void Set(State state) = 0;
     virtual State GetState() = 0;
 };

@@ -4,6 +4,7 @@
 #include <frc/commands/Command.h>
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/WPILib.h>
+#include <exception>
 
 #include "OI.h"
 #include "subsystems/Subsystems.h"

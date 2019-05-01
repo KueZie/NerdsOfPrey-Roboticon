@@ -2,9 +2,10 @@
 
 Hatch* Hatch::m_Instance = nullptr;
 
-Hatch::Hatch() : Subsystem("Hatch")
+Hatch::Hatch()
+  : SimplePneumaticSubsystem("Hatch")
 {
-  m_DSolenoid.reset( new frc::DoubleSolenoid(constants::hatch_intake::SOLENOID_IDS[0], constants::hatch_intake::SOLENOID_IDS[1]) );
+  // m_DSolenoid.reset( new frc::DoubleSolenoid(constants::hatch_intake::SOLENOID_IDS[0], constants::hatch_intake::SOLENOID_IDS[1]) );
   // Start retracted
   m_DSolenoid->Set(frc::DoubleSolenoid::Value::kReverse);
 }
