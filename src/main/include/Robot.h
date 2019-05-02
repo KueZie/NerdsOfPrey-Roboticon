@@ -26,14 +26,15 @@ private:
   // doesn't have undefined behavior and potentially crash.
   frc::Command* m_autonomousCommand = nullptr;
   frc::SendableChooser<frc::Command*> m_chooser;
-
-  static Vision*                 m_VisionSubsystem;
-  static Arm*                    m_ArmSubsystem;
-  static Cargo*                  m_CargoSubsystem;
-  static Hatch*                  m_HatchSubsystem;
-  static Climber*                m_ClimberSubsystem;
-  static Drivetrain*             m_DrivetrainSubsystem;
-  static HatchSlider*            m_HatchSliderSubsystem;
-  static OI*                     m_OI;
-  static PowerDistributionPanel* m_PDP;
+  
+  using PDP = PowerDistributionPanel;
+  static Vision&      m_VisionSubsystem;
+  static Arm&         m_ArmSubsystem;
+  static Cargo&       m_CargoSubsystem;
+  static Hatch&       m_HatchSubsystem;
+  static Climber&     m_ClimberSubsystem;
+  static Drivetrain&  m_DrivetrainSubsystem;
+  static HatchSlider& m_HatchSliderSubsystem;
+  static OI&          m_OI;
+  static PDP          m_PDP;
 };

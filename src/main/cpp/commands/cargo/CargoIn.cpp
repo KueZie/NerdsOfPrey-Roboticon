@@ -2,10 +2,10 @@
 
 CargoIn::CargoIn()
 {
-  Requires(Cargo::GetInstance());
+  Requires(&Cargo::GetInstance());
 }
 
 void CargoIn::Initialize() 
 {
-  Cargo::GetInstance()->In();
+  Cargo::GetInstance().In();
 }

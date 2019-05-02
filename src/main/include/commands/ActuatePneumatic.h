@@ -6,9 +6,9 @@
 class ActuatePneumatic : public frc::InstantCommand
 {
 public:
-  ActuatePneumatic(SimplePneumaticSubsystem* subsystem, SimplePneumaticSubsystem::State state);
+  ActuatePneumatic(SimplePneumaticSubsystem& subsystem, SimplePneumaticSubsystem::State state);
   void Initialize() override;
 private:
-  SimplePneumaticSubsystem* m_PneumaticsSystem;
+  SimplePneumaticSubsystem& m_PneumaticsSystem;
   SimplePneumaticSubsystem::State m_State;
 };

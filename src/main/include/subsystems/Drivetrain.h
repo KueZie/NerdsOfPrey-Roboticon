@@ -17,27 +17,25 @@ class Drivetrain : public frc::Subsystem
 {
 private:
   // Master controllers
-  std::unique_ptr<WPI_TalonSRX>  m_FrontLeftMotorMaster;
-  std::unique_ptr<WPI_TalonSRX>  m_FrontRightMotorMaster;
+  WPI_TalonSRX  m_FrontLeftMotorMaster;
+  WPI_TalonSRX  m_FrontRightMotorMaster;
   // Slave controllers
-  std::unique_ptr<WPI_VictorSPX> m_MiddleLeftMotorSlave;
-  std::unique_ptr<WPI_VictorSPX> m_MiddleRightMotorSlave;
-  
-  std::unique_ptr<WPI_VictorSPX> m_BackLeftMotorSlave;
-  std::unique_ptr<WPI_VictorSPX> m_BackRightMotorSlave;
+  WPI_VictorSPX m_MiddleLeftMotorSlave;
+  WPI_VictorSPX m_MiddleRightMotorSlave;
+
+  WPI_VictorSPX m_BackLeftMotorSlave;
+  WPI_VictorSPX m_BackRightMotorSlave;
+
+  // Gyro
+  AHRS m_AHRS;
 
   // Curvature drive variables
   double m_QuickStopAccumulator, m_OldWheel, m_IsQuickTurn;
 
-  // Gyro
-  std::unique_ptr<AHRS> m_AHRS;
-
-  static Drivetrain* m_Instance;
-
   Drivetrain(); // Prevent instantiation outside of this class
   double CurvatureSinScalar(double wheelNonLinearity, double wheel);
 public:
-  static Drivetrain* GetInstance();
+  static Drivetrain& GetInstance();
   void Arcade(float throttle, float rotationSpeed);
   void Tank(float left, float right);
   void Curvature(float throttle, float wheel);
@@ -55,5 +53,5 @@ public:
   float GetLeftPercentOutput();
   float GetRightPercentOutput();
   virtual void InitDefaultCommand() override;
-  ~Drivetrain() { delete m_Instance; }
+  ~Drivetrain() {}
 };

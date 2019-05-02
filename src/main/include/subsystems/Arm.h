@@ -13,14 +13,13 @@ class Arm : public frc::Subsystem
 private:
   float m_Angle;
   int m_EncoderPosition;
-  std::unique_ptr<WPI_TalonSRX> m_LeftMotorMaster;
-  std::unique_ptr<WPI_VictorSPX> m_RightMotorSlave;
-  std::unique_ptr<DigitalInput> m_ZeroingLimitSwitch;
-  static Arm* m_Instance;
+  WPI_TalonSRX  m_LeftMotorMaster;
+  WPI_VictorSPX m_RightMotorSlave;
+  // DigitalInput  m_ZeroingLimitSwitch;
   Arm();
 public:
-  static Arm* GetInstance();
-  ~Arm() { delete m_Instance; }
+  static Arm& GetInstance();
+  ~Arm() {}
   float GetEncoderPosition();
   void ResetEncoderPosition();
   void SetAngle(double angle);

@@ -9,14 +9,13 @@
 class Hatch : public SimplePneumaticSubsystem
 {
 private:
-  std::unique_ptr<frc::DoubleSolenoid> m_DSolenoid;
+  frc::DoubleSolenoid m_DSolenoid;
   State m_State;
 
-  static Hatch* m_Instance;
   Hatch();
 public:
-  static Hatch* GetInstance();
-  ~Hatch() { delete m_Instance; }
+  static Hatch& GetInstance();
+  ~Hatch() {}
   virtual void Set(State state) override;
   virtual State GetState() override;
   bool IsGrabbing();

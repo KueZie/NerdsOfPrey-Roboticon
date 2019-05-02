@@ -2,11 +2,11 @@
 
 CargoOut::CargoOut()
 {
-  Requires(Cargo::GetInstance());
+  Requires(&Cargo::GetInstance());
 }
 
 // Called once when the command executes
 void CargoOut::Initialize() 
 {
-  Cargo::GetInstance()->Out();
+  Cargo::GetInstance().Out();
 }

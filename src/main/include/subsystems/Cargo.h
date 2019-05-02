@@ -8,12 +8,11 @@
 class Cargo : public frc::Subsystem
 {
 private:
-  std::unique_ptr<WPI_VictorSPX> m_Intake;
-  static Cargo* m_Instance;
+  WPI_VictorSPX m_Intake;
   Cargo();
 public:
-  static Cargo* GetInstance();
-  ~Cargo() { delete m_Instance; }
+  static Cargo& GetInstance();
+  ~Cargo() {}
   void In();
   void Out();
   void Off();

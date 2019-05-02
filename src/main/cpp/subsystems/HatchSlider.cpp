@@ -1,25 +1,22 @@
 #include "subsystems/HatchSlider.h"
 
-HatchSlider* HatchSlider::m_Instance = nullptr;
-
 HatchSlider::HatchSlider()
-  : SimplePneumaticSubsystem("HatchSlider")
+  : SimplePneumaticSubsystem("HatchSlider"),
+    m_DSolenoid(constants::hatch_slider::SOLENOID_IDS[0], constants::hatch_slider::SOLENOID_IDS[1])
 {
-  // m_DSolenoid.reset( new frc::DoubleSolenoid(constants::hatch_slider::SOLENOID_IDS[0], constants::hatch_slider::SOLENOID_IDS[1]) );
   // Start retracted
-  m_DSolenoid->Set(frc::DoubleSolenoid::Value::kReverse);
+  m_DSolenoid.Set(frc::DoubleSolenoid::Value::kReverse);
 }
 
-HatchSlider* HatchSlider::GetInstance()
+HatchSlider& HatchSlider::GetInstance()
 {
-  if (m_Instance == nullptr)
-    m_Instance = new HatchSlider();
-  return m_Instance;
+  static HatchSlider instance;
+  return instance;
 }
 
 void HatchSlider::Set(State state)
 {
-  m_DSolenoid->Set(static_cast<frc::DoubleSolenoid::Value>(state));
+  m_DSolenoid.Set(static_cast<frc::DoubleSolenoid::Value>(state));
   m_State = state;
 }
 

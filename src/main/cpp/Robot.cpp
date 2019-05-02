@@ -10,34 +10,19 @@
 #include <frc/commands/Scheduler.h>
 #include <frc/smartdashboard/SmartDashboard.h>
 
-Vision*                 Robot::m_VisionSubsystem;
-Arm*                    Robot::m_ArmSubsystem;
-Cargo*                  Robot::m_CargoSubsystem;
-Hatch*                  Robot::m_HatchSubsystem;
-Climber*                Robot::m_ClimberSubsystem;
-Drivetrain*             Robot::m_DrivetrainSubsystem;
-HatchSlider*            Robot::m_HatchSliderSubsystem;
-OI*                     Robot::m_OI;
-PowerDistributionPanel* Robot::m_PDP;
+using PDP = PowerDistributionPanel;
+Vision&      Robot::m_VisionSubsystem       = Vision::GetInstance();
+Arm&         Robot::m_ArmSubsystem          = Arm::GetInstance();
+Cargo&       Robot::m_CargoSubsystem        = Cargo::GetInstance();
+Hatch&       Robot::m_HatchSubsystem        = Hatch::GetInstance();
+Climber&     Robot::m_ClimberSubsystem      = Climber::GetInstance();
+Drivetrain&  Robot::m_DrivetrainSubsystem   = Drivetrain::GetInstance();
+HatchSlider& Robot::m_HatchSliderSubsystem  = HatchSlider::GetInstance();
+OI&          Robot::m_OI                    = OI::GetInstance();
+PDP          Robot::m_PDP                   = PowerDistributionPanel(0);
 
 void Robot::RobotInit() {
-  try
-  {
-    frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
-    m_VisionSubsystem = Vision::GetInstance();
-    m_ArmSubsystem = Arm::GetInstance();
-    m_CargoSubsystem = Cargo::GetInstance();
-    // m_HatchSubsystem = Hatch::GetInstance();
-    // m_HatchSliderSubsystem = HatchSlider::GetInstance();
-    m_DrivetrainSubsystem = Drivetrain::GetInstance();
-    m_ClimberSubsystem = Climber::GetInstance();
-    m_OI = OI::GetInstance();
-    m_PDP = new PowerDistributionPanel(0);
-  }
-  catch(const std::exception& e)
-  {
-    std::cout << e.what() << std::endl;
-  }
+  frc::SmartDashboard::PutData("Auto Modes", &m_chooser);
 }
 
 /**
@@ -50,13 +35,13 @@ void Robot::RobotInit() {
  */
 void Robot::RobotPeriodic()
 {
-  frc::SmartDashboard::PutNumber("R Drive Enc.", m_DrivetrainSubsystem->GetRightEncoderPosition());
-  frc::SmartDashboard::PutNumber("L Drive Enc.", m_DrivetrainSubsystem->GetLeftEncoderPosition());
-  frc::SmartDashboard::PutNumber("R Drive POut.", m_DrivetrainSubsystem->GetRightPercentOutput());
-  frc::SmartDashboard::PutNumber("L Drive POut.", m_DrivetrainSubsystem->GetLeftPercentOutput());
-  frc::SmartDashboard::PutString("HatchSlider", m_HatchSliderSubsystem->IsExtended() ? "Extended" : "Stowed");
-  frc::SmartDashboard::PutString("HatchSystem", m_HatchSubsystem->IsGrabbing() ? "Grabbing" : "Not Grabbing");
-  frc::SmartDashboard::PutString("Limelight", m_VisionSubsystem->GetLimelight()->IsConnected() ? "Connected" : "Not Connected");
+  frc::SmartDashboard::PutNumber("R Drive Enc.", m_DrivetrainSubsystem.GetRightEncoderPosition());
+  frc::SmartDashboard::PutNumber("L Drive Enc.", m_DrivetrainSubsystem.GetLeftEncoderPosition());
+  frc::SmartDashboard::PutNumber("R Drive POut.", m_DrivetrainSubsystem.GetRightPercentOutput());
+  frc::SmartDashboard::PutNumber("L Drive POut.", m_DrivetrainSubsystem.GetLeftPercentOutput());
+  frc::SmartDashboard::PutString("HatchSlider", m_HatchSliderSubsystem.IsExtended() ? "Extended" : "Stowed");
+  frc::SmartDashboard::PutString("HatchSystem", m_HatchSubsystem.IsGrabbing() ? "Grabbing" : "Not Grabbing");
+  frc::SmartDashboard::PutString("Limelight", m_VisionSubsystem.GetLimelight().IsConnected() ? "Connected" : "Not Connected");
 }
 
 /**

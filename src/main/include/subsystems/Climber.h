@@ -5,8 +5,7 @@
 class Climber : public frc::Subsystem
 {
 private:
-  static Climber* m_Instance;
   Climber();
 public:
-  static Climber* GetInstance();
+  static Climber& GetInstance();
 };

@@ -2,7 +2,7 @@
 
 ArmCargoShipPosition::ArmCargoShipPosition()
 {
-  Requires(Arm::GetInstance());
+  Requires(&Arm::GetInstance());
 }
 
 // Called just before this Command runs the first time

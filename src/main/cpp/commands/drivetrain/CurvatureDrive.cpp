@@ -2,16 +2,16 @@
 
 CurvatureDrive::CurvatureDrive()
 {
-  Requires(Drivetrain::GetInstance());
+  Requires(&Drivetrain::GetInstance());
 }
 
 void CurvatureDrive::Initialize() {}
 
 void CurvatureDrive::Execute() 
 {
-  Drivetrain::GetInstance()->Curvature(
-    OI::GetInstance()->m_Controller->GetY(GenericHID::kLeftHand),
-    OI::GetInstance()->m_Controller->GetX(GenericHID::kRightHand)
+  Drivetrain::GetInstance().Curvature(
+    OI::GetInstance().controller.GetY(GenericHID::kLeftHand),
+    OI::GetInstance().controller.GetX(GenericHID::kRightHand)
   );
 }
 

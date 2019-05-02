@@ -7,11 +7,10 @@
 class Vision : public frc::Subsystem
 {
 private:
-  std::shared_ptr<Limelight> m_Limelight;
-  static Vision* m_Instance;
+  Limelight m_Limelight;
 public:
   Vision();
-  static Vision* GetInstance();
-  std::shared_ptr<Limelight> GetLimelight();
+  static Vision& GetInstance();
+  Limelight& GetLimelight();
   void InitDefaultCommand() override;
 };
