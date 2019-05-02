@@ -22,7 +22,8 @@ void LookAtTarget::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool LookAtTarget::IsFinished()
 {
-  if (m_CurrentError < constants::vision::limelight::MAXIMUM_OFFSET_ERROR)
+  using namespace constants::vision::limelight;
+  if (std::abs(m_CurrentError) < OFFSET_TOLERANCE)
     return true;
   return false;
 }

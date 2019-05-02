@@ -62,7 +62,7 @@ namespace constants
         constexpr float VISION_TARGET_HEIGHT = 0.0f;
         namespace limelight
         {
-            constexpr float MAXIMUM_OFFSET_ERROR  = 0.5f;
+            constexpr float OFFSET_TOLERANCE      = 1.0f;
             constexpr float MOUNTING_ANGLE        = 0.0f;
             constexpr float DISTANCE_FROM_FLOOR   = 0.0f;
             constexpr float DISTANCE_FROM_BUMPERS = 0.0f;
