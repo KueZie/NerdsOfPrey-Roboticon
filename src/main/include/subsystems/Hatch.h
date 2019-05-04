@@ -2,7 +2,6 @@
 
 #include <frc/commands/Subsystem.h>
 #include <frc/WPILib.h>
-#include <memory>
 #include "Constants.h"
 #include "util/SimplePneumaticSubsystem.h"
 

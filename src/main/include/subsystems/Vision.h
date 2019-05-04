@@ -1,7 +1,6 @@
 #pragma once
 
 #include <frc/commands/Subsystem.h>
-#include <memory>
 #include "util/Limelight.h"
 
 class Vision : public frc::Subsystem

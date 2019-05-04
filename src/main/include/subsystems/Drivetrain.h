@@ -3,7 +3,6 @@
 #include <frc/commands/Subsystem.h>
 #include <ctre/Phoenix.h>
 #include <AHRS.h>
-#include <memory>
 #include "Constants.h"
 #include "util/Functions.h"
 #include "commands/drivetrain/ArcadeDrive.h"
