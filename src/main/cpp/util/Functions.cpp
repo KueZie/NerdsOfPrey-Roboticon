@@ -23,4 +23,9 @@ namespace functions
     {
         return (radians * 180.0f) / constants::PI;
     }
+
+    double angle_from_ticks(double ticks, double gearRatio, double ticksPerRevolution)
+    {
+        return ticks * gearRatio * (360 / ticksPerRevolution);
+    }
 }
